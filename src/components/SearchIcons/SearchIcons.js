@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styledComponents from "styled-components";
 const IconDiv = styledComponents.div`
   align-items: center;
@@ -12,6 +13,8 @@ const IconDiv = styledComponents.div`
 `;
 const IconUl = styledComponents.ul`
 
+  text-decoration: none;
+  
   justify-content: center;
   padding-left: 5px;
   padding-right: 5px;
@@ -70,12 +73,16 @@ const LabelSpan = styledComponents.span`
   background: transparent;
   padding: 8px;
 `;
+const linkStyle = {
+  textDecoration: "none"
+}
 const SearchIcons = (props) => {
   const [selected, setSelected] = useState(props.selected);
   return (
     <IconDiv>
       <IconUl>
         {props.data.map((v, i) => (
+          <Link to={v.path} style={linkStyle}>
           <IconLi
             key={v.id}
             onClick={() => setSelected(v.id)}
@@ -88,6 +95,7 @@ const SearchIcons = (props) => {
             />
             <LabelSpan>{v.name}</LabelSpan>
           </IconLi>
+          </Link>
         ))}
       </IconUl>
     </IconDiv>

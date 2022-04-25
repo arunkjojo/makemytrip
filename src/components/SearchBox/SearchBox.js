@@ -53,7 +53,9 @@ const SearchBox = () => {
       <LocationWidget 
       label="From"
       widthValue="300"
-      value="Mumbai"/>
+      name="Mumbai"
+      desc="Chhatrapati Shivaji International Airport"
+      code="MOB"/>
 
       <SpinCircle>
         <SpinIcon />
@@ -62,7 +64,9 @@ const SearchBox = () => {
       <LocationWidget 
       label="To"
       widthValue="300"
-      value="Delhi"/>
+      name="Delhi"
+      desc="Delhi Airport"
+      code="DEL"/>
 
       <DateWidget 
       label="Departure"

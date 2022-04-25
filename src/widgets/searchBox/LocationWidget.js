@@ -45,13 +45,15 @@ const DOMMY_DATA = [
     data: [
       {
         id: 1,
-        name: "Delhi, India",
+        name: "Delhi",
+        place: "India",
         shortName: "DEL",
         label: "Delhi Airport",
       },
       {
         id: 2,
-        name: "Mumbai, India",
+        name: "Mumbai",
+        place: "India",
         shortName: "BOM",
         label: "Chhatrapati Shivaji International Airport",
       },
@@ -63,55 +65,70 @@ const DOMMY_DATA = [
     data: [
       {
         id: 1,
-        name: "Delhi, India",
+        name: "Delhi",
+        place: "India",
         shortName: "DEL",
         label: "Delhi Airport",
       },
       {
         id: 2,
-        name: "Mumbai, India",
+        name: "Mumbai",
+        place: "India",
         shortName: "BOM",
         label: "Chhatrapati Shivaji International Airport",
       },
       {
         id: 3,
-        name: "Mumbai, India",
+        name: "Mumbai",
+        place: "India",
         shortName: "BOM",
         label: "Chhatrapati Shivaji International Airport",
       },{
         id: 4,
-        name: "Delhi, India",
+        name: "Delhi",
+        place: "India",
         shortName: "DEL",
         label: "Delhi Airport",
       },
       {
         id: 5,
-        name: "Mumbai, India",
+        name: "Mumbai",
+        place: "India",
         shortName: "BOM",
         label: "Chhatrapati Shivaji International Airport",
       },{
         id: 6,
-        name: "Delhi, India",
+        name: "Delhi",
+        place: "India",
         shortName: "DEL",
         label: "Delhi Airport",
       },
       {
         id: 7,
-        name: "Mumbai, India",
+        name: "Mumbai",
+        place: "India",
         shortName: "BOM",
         label: "Chhatrapati Shivaji International Airport",
       },{
         id: 8,
-        name: "Delhi, India",
+        name: "Delhi",
+        place: "India",
         shortName: "DEL",
         label: "Delhi Airport",
       }
     ],
   }
 ];
+const LocationDescription = styled.p`
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+`
 const LocationWidget = (props) => {
   const [showLocation, setShowLocation] = useState(false);
-  const [location, setLocation] = useState({name:'',label:'',code:''});
+  const [location, setLocation] = useState({name:props.name,label:props.desc,code:props.code});
   const locationFixHandler = (data) => {
     setLocation(
       {name:data.name,
@@ -132,7 +149,7 @@ const LocationWidget = (props) => {
           readOnly=""
           value={location.name}
         ></DivValue>
-        <p style={{position: 'relative'}}>{location.label}</p>
+        <LocationDescription>{location.code}, {location.label}</LocationDescription>
       </DivLabel>
       {showLocation && (
         <LocationDropDiv>

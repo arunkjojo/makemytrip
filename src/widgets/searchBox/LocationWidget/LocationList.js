@@ -72,7 +72,7 @@ const LocationList = (props) => {
                   code: data.shortName
                 })}>
                   <LocationNameLabel>
-                    <LocationName>{data.name} </LocationName>
+                    <LocationName>{data.name},{data.place} </LocationName>
                     <LocationLabel>{data.label} </LocationLabel>
                   </LocationNameLabel>
                   <LocationSName>{data.shortName} </LocationSName>

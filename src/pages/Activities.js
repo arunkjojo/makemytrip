@@ -1,9 +1,6 @@
 import React from 'react'
 import styledComponents from "styled-components";
-import SearchBox from './components/SearchBox/SearchBox';
-import SearchButton from "./components/SearchButton/SearchButton";
-import SearchFare from "./components/SearchFare/SearchFare";
-import SearchTrip from "./components/SearchTrip/SearchTrip";
+import SearchButton from "../components/SearchButton/SearchButton";
 
 const MainDiv = styledComponents.div`
   width: 1200px;
@@ -15,15 +12,13 @@ const MainDiv = styledComponents.div`
   padding: 60px 20px 0;
 `;
 
-const Main = () => {
+const Activities = () => {
   return (
     <MainDiv>
-        <SearchTrip/>
-        <SearchBox />
-        <SearchFare />
+        <h2>Activities</h2>
         <SearchButton align="center" title="Search"/>
     </MainDiv>
   )
 }
 
-export default Main
+export default Activities

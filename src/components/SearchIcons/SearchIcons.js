@@ -77,7 +77,7 @@ const linkStyle = {
   textDecoration: "none"
 }
 const SearchIcons = (props) => {
-  const [selected, setSelected] = useState(props.selected);
+  const [selected, setSelected] = useState(1);
   return (
     <IconDiv>
       <IconUl>

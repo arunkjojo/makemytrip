@@ -3,7 +3,9 @@ import styledComponents from "styled-components";
 import "./App.css";
 import SearchIcons from "./components/SearchIcons/SearchIcons";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Main from "./Main";
+import Flight from "./pages/Flight";
+import Activities from "./pages/Activities";
+import Hostel from "./pages/Hostel";
 
 const Icons = [
   {
@@ -15,10 +17,10 @@ const Icons = [
   },
   {
     id: 2,
-    name: "Hotel",
+    name: "Hostels",
     icon: "-50px -37px",
     activeIcon: "-50px 1px",
-    path: "/hotel"
+    path: "/hostel"
   },
   {
     id: 3,
@@ -95,29 +97,126 @@ function App() {
           element={
             <>
               <NavIcon>
-                <SearchIcons data={Icons} selected={1} />
+                <SearchIcons data={Icons}/>
               </NavIcon>
-              <Main />
+              <Flight labelFor="flight" limit={3}/>
             </>
           }
         />
-        {Icons.map((v, i) => (
-          <Route
-          path={v.path}
-          element={
-            <>
-              <NavIcon>
-                <SearchIcons data={Icons} selected={1} />
-              </NavIcon>
-              <Main />
-            </>
-          }
-        />
-        ))}
         <Route
           path="*"
           element={
             <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/flight"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={1}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3}/>
+            </>
+          }
+        />
+        <Route
+          path="/hostel"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={2}/>
+              </NavIcon>
+              <Hostel labelFor="hostel" />
+            </>
+          }
+        />
+        <Route
+          path="/home-stay"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={3}/>
+              </NavIcon>
+              <Hostel labelFor="home-stay" />
+            </>
+          }
+        />
+        <Route
+          path="/holiday-pack"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={4}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3} />
+            </>
+          }
+        />
+        <Route
+          path="/train"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={5}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3} />
+            </>
+          }
+        />
+        <Route
+          path="/bus"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={6}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3} />
+            </>
+          }
+        />
+        <Route
+          path="/cabs"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={7}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3} />
+            </>
+          }
+        />
+        <Route
+          path="/visa"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={8}/>
+              </NavIcon>
+              <Flight labelFor="flight" limit={3} />
+            </>
+          }
+        />
+        <Route
+          path="/charted-flight"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={9}/>
+              </NavIcon>
+              <Flight labelFor="charted-flight" limit={2}/>
+            </>
+          }
+        />
+        <Route
+          path="/activities"
+          element={
+            <>
+              <NavIcon>
+                <SearchIcons data={Icons} selected={10}/>
+              </NavIcon>
+              <Activities />
+            </>
           }
         />
       </Routes>

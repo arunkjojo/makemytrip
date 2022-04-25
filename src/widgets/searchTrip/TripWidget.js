@@ -40,11 +40,11 @@ const TripWidget = (props) => {
   const [tripId, setTripId] = useState(0);
   return (
       <FareTypeDiv>
-        {props.title.map((value, i) => (
+        {props.title.map((v, i) => (
           <FareItems active={i === tripId} onClick={() => setTripId(i)} key={i}>
             <RedioItem id={i} checked={i === tripId} />
             <LabelItem htmlFor={i}>
-              {value}
+              {v.value}
             </LabelItem>
           </FareItems>
         ))}

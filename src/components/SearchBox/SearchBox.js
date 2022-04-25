@@ -49,7 +49,6 @@ const SpinIcon =styledComponents.span`
 const SearchBox = () => {
   return (
     <SearchBoxDiv>
-
       <LocationWidget 
       label="From"
       widthValue="300"
@@ -75,9 +74,7 @@ const SearchBox = () => {
       <DateWidget 
       label="Return"
       widthValue="158" />
-
       <TravellerWidget />
-
     </SearchBoxDiv>
   )
 }

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> makemytrip UI.
 import styledComponents from "styled-components";
 const IconDiv = styledComponents.div`
   align-items: center;
@@ -13,8 +16,11 @@ const IconDiv = styledComponents.div`
 `;
 const IconUl = styledComponents.ul`
 
+<<<<<<< HEAD
   text-decoration: none;
   
+=======
+>>>>>>> makemytrip UI.
   justify-content: center;
   padding-left: 5px;
   padding-right: 5px;

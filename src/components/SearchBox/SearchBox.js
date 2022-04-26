@@ -1,6 +1,5 @@
 import React from 'react'
 import styledComponents from 'styled-components'
-// import DatePickerWidget from '../../widgets/searchBox/DatePickerWidget'
 import DateWidget from '../../widgets/searchBox/DateWidget'
 import LocationWidget from '../../widgets/searchBox/LocationWidget'
 import TravellerWidget from '../../widgets/searchBox/TravellerWidget'

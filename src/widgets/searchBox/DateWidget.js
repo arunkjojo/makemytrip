@@ -1,8 +1,6 @@
-import * as moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import DatePicker from "./DateWidget/DatePicker";
-
 const DateDiv = styled("div")`
   width: 158px;
   height: 112px;

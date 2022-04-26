@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styledComponents from "styled-components";
 const DateWrapper = styledComponents.div``;
 const DatePickerHeader = styledComponents.div`
-  // border-bottom: solid 2px #e7e7e7;
   padding: 6px 10px;
   background-color: #ffffff;
   box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);

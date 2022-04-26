@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import "react-dates/initialize";
+// import "react-dates/initialize";
 import { SingleDatePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import styled from "styled-components";
@@ -40,7 +40,7 @@ const StyledDatePickerWrapper = styled.div`
   }
 `;
 const now = moment();
-export default class DateWidget extends React.Component {
+export default class DatePickerWidget extends React.Component {
   state = {
     date: now,
     dateFocused: false,
@@ -60,9 +60,10 @@ export default class DateWidget extends React.Component {
           onFocusChange={this.onFocusChange}
           focused={this.state.dateFocused}
           date={this.state.date}
+          min={new Date()}
           onDateChange={this.onDateChange}
         >
-          {moment(this.state.date).format('D MMM YYYY')}
+          {moment(this.state.date).format('dd MMM yy')}
         </SingleDatePicker>
       </StyledDatePickerWrapper>
     );

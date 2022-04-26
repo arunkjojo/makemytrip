@@ -2,6 +2,7 @@ import * as moment from "moment";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import DatePicker from "./DateWidget/DatePicker";
+
 const DateDiv = styled("div")`
   width: 158px;
   height: 112px;
@@ -64,38 +65,44 @@ const DateDropDiv = styled.div`
 `;
 
 const DateWidget = (props) => {
+  // const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const [showDate, setShowDate] = useState(false);
-  const [date, setDate] = useState(moment());
+  const [dateValue, setDateValue] = useState({
+    date: props.date,
+    dt:props.date.toLocaleString('en-us', { day: '2-digit' }),
+    mt:props.date.toLocaleString('en-us', { month: 'short' }),
+    yr:props.date.toLocaleString('en-us', { year: '2-digit' }),
+    dy:props.date.toLocaleString('en-us', { weekday: 'long' })
+  });
   const dateHandler = (data) => {
-    console.log(data);
+    // console.log(data.startDate,data.endDate);
+    if(data.startDate !== null){
+      setDateValue({
+        dt: data.startDate.toLocaleString('en-us', { day: '2-digit' }),
+        mt: data.startDate.toLocaleString('en-us', { month: 'short' }),
+        yr: data.startDate.toLocaleString('en-us', { year: '2-digit' }),
+        dy:data.startDate.toLocaleString('en-us', { weekday: 'long'})
+      });
+      setShowDate(false);
+    }
   }
-  let depDate = date;
-
-  let currentDt=moment().format("DD");
-  let currentMt=moment().format("MMM");
-  let currentYr=moment().format("YY");
-
-  useEffect(()=>{
-    var DDMMMYY = currentDt+' '+currentMt+' '+currentYr;
-    setDate(DDMMMYY);
-  },[currentDt,currentMt,currentYr]);
   return (
     <DateDiv>
       <DivLabel onClick={()=> setShowDate(!showDate)} htmlFor={props.label}>
         <Span onClick={()=> setShowDate(!showDate)}>{props.label}</Span>
-        <DivInput value={date} />
+        <DivInput />
         <DivValue>
-          <span className="date">{currentDt} </span>
-          <span className="month">{currentMt}</span>
-          <span className="year">'{currentYr}</span>
+          <span className="date">{dateValue.dt} </span>
+          <span className="month">{dateValue.mt}</span>
+          <span className="year">{"'"+dateValue.yr}</span>
         </DivValue>
         <DivValue>
-          <span className="day">Sunday</span>
+          <span className="day">{dateValue.dy}</span>
         </DivValue>
       </DivLabel>
       {showDate && (
         <DateDropDiv>
-          <DatePicker dateHandle={dateHandler} value={date} limit={30} rtnMinDate={depDate} />
+          <DatePicker dateChangeHandler={dateHandler} currentDate={dateValue.date} />
         </DateDropDiv>
       )}
     </DateDiv>

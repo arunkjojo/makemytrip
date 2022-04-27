@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MakeMyTrip App",
+  "name": "Make a trip use to makemytrip",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "maskable_icon.png",
       "type": "image/png"
     }
   ],

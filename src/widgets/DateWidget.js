@@ -1,58 +1,95 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeShowLocation } from "../redux/locationSlice";
+import { changeShowTraveller } from "../redux/travellerSlice";
+import {
+  changeDate,
+  changeShowDate
+} from "../redux/dateSlice";
 import DatePicker from "./DateWidgets/DatePicker";
 import {
   DateWidgetDiv,
-  DateWidgetLabel,
-  DateWidgetSpan,
-  DateWidgetInput,
-  DateWidgetValue,
+  WidgetLabel,
+  WidgetSpan,
+  WidgetValue,
   DateWidgetDrop,
 } from "../customStyle";
-
 const DateWidget = (props) => {
-  const [showDate, setShowDate] = useState(false);
-  const [dateValue, setDateValue] = useState({
-    date: props.date,
-    dt: props.date.toLocaleString("en-us", { day: "2-digit" }),
-    mt: props.date.toLocaleString("en-us", { month: "short" }),
-    yr: props.date.toLocaleString("en-us", { year: "2-digit" }),
-    dy: props.date.toLocaleString("en-us", { weekday: "long" }),
-  });
+  const departureDate = useSelector((state) => new Date(state.date.departure.date));
+  const returnsDate = useSelector((state) => new Date(state.date.returns.date));
+  const show = useSelector((state) => state.date.showDate);
+  const dispatch = useDispatch();
+
   const dateHandler = (data) => {
-    if (data.startDate !== null) {
-      setDateValue({
-        dt: data.startDate.toLocaleString("en-us", { day: "2-digit" }),
-        mt: data.startDate.toLocaleString("en-us", { month: "short" }),
-        yr: data.startDate.toLocaleString("en-us", { year: "2-digit" }),
-        dy: data.startDate.toLocaleString("en-us", { weekday: "long" }),
-      });
-      setShowDate(false);
+    if (data.startDate !== null && data.endDate !== null) {
+      console.log("data.startDate",data.startDate);
+      console.log("data.endDate",data.endDate);
+
+      let departure = {
+        date: data.startDate.toString()
+      };
+      let returns = {
+        date: data.endDate.toString()
+      };
+
+      dispatch((
+        changeDate(departure),
+        changeDate(returns)
+      ));
     }
   };
+  const showDateHandler = (e) => {
+    e.preventDefault();
+    dispatch((
+      changeShowLocation(false),
+      changeShowTraveller(false),
+      changeShowDate(!show)
+    ));
+  };
   return (
-    <DateWidgetDiv>
-      <DateWidgetLabel
-        onClick={() => setShowDate(!showDate)}
-        htmlFor={props.label}
-      >
-        <DateWidgetSpan onClick={() => setShowDate(!showDate)}>
-          {props.label}
-        </DateWidgetSpan>
-        <DateWidgetInput />
-        <DateWidgetValue>
-          <span className="date">{dateValue.dt} </span>
-          <span className="month">{dateValue.mt}</span>
-          <span className="year">{"'" + dateValue.yr}</span>
-        </DateWidgetValue>
-        <DateWidgetValue>
-          <span className="day">{dateValue.dy}</span>
-        </DateWidgetValue>
-      </DateWidgetLabel>
-      {showDate && (
+    <DateWidgetDiv onClick={showDateHandler}>
+      <WidgetLabel 
+          active={show} 
+          onClick={showDateHandler} 
+          htmlFor={props.label}>
+        <WidgetSpan>{props.label}</WidgetSpan>
+        <WidgetValue>
+          <span className="headTilte">
+            {props.primaryKey === "to"
+              ? returnsDate.toLocaleString("en-us", { day: "2-digit" })
+              : departureDate.toLocaleString("en-us", { day: "2-digit" })
+            }{" "}
+          </span>
+          <span className="subTiitle">
+            {props.primaryKey === "to"
+              ? returnsDate.toLocaleString("en-us", { month: "short" })
+              : departureDate.toLocaleString("en-us", { month: "short" })
+            }
+          </span>
+          <span className="subTiitle">
+            '{props.primaryKey === "to"
+              ? returnsDate.toLocaleString("en-us", { year: "2-digit" })
+              : departureDate.toLocaleString("en-us", { year: "2-digit" })
+            }
+          </span>
+        </WidgetValue>
+        <WidgetValue>
+          <span className="para">
+            {props.primaryKey === "to"
+              ? returnsDate.toLocaleString("en-us", { weekday: "long" })
+              : departureDate.toLocaleString("en-us", { weekday: "long" })
+            }
+          </span>
+        </WidgetValue>
+      </WidgetLabel>
+      {show && (
         <DateWidgetDrop>
           <DatePicker
             dateChangeHandler={dateHandler}
-            currentDate={dateValue.date}
+            currentDate={props.primaryKey === "to"
+              ? returnsDate
+              : departureDate
+            }
           />
         </DateWidgetDrop>
       )}

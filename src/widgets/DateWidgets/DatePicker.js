@@ -4,14 +4,17 @@ import { Datepicker, START_DATE } from "@datepicker-react/styled";
 
 const DatePickerComponent = (props) => {
   const [state, setState] = useState({
-    startDate: null,
-    endDate: null,
+    startDate: null ,// dateValue.departure.full_date,
+    endDate: null, //dateValue.returns.full_date,
     focusedInput: START_DATE,
   });
 
   function handleDatesChange(data) {
     if (!data.focusedInput) {
-      setState({ ...data, focusedInput: START_DATE });
+      setState({ 
+        ...data, 
+        focusedInput: START_DATE 
+      });
     } else {
       setState(data);
     }
@@ -23,8 +26,8 @@ const DatePickerComponent = (props) => {
       <Datepicker
         onDatesChange={handleDatesChange}
         minBookingDate={new Date()}
-        startDate={state.startDate} // Date or null
-        endDate={state.endDate} // Date or null
+        startDate= {state.startDate} // Date or null
+        endDate= {state.endDate} // Date or null
         focusedInput={state.focusedInput} // START_DATE, END_DATE or null
         numberOfMonths={2}
         firstDayOfWeek={0}
@@ -36,8 +39,6 @@ const DatePickerComponent = (props) => {
               <DatePara>
                 <CalSpan />
                 <SelectDateField
-                  active={active === "dep"}
-                  onClick={() => setActive("dep")}
                 >
                   <span>1</span>
                   <span>May</span>
@@ -54,8 +55,6 @@ const DatePickerComponent = (props) => {
               <DatePara>
                 <CalSpan />
                 <SelectDateField
-                  active={active === "ret"}
-                  onClick={() => setActive("ret")}
                 >
                   <span>25</span>
                   <span>May</span>
@@ -78,7 +77,7 @@ const DatePickerComponent = (props) => {
                 </DayPickerCaption>
                 <DayPickerWeekdays>
                   <WeekDays>
-                    {days.map((v, i) => (
+                    { days.map((v, i) => (
                       <Day key={i}>
                         {" "}
                         <abbr title={v.title}>{v.value}</abbr>{" "}

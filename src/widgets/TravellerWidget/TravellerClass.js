@@ -8,17 +8,20 @@ import {
 
 const TravellerClass = (props) => {
   const [tclass, setTclass] = useState(props.value);
+  const travellerHandler = (data) => {
+    setTclass(data);
+    props.TravellerClassHandler(data);
+  }
   return (
     <TravellerDiv>
       <TravellerP>{props.paragraph}</TravellerP>
       <TravellerUl>
         {props.data.map((v, i) => (
           <TravellerLi
-            onClick={() => {
-              setTclass(v);
-            }}
             key={i}
+            value={v}
             active={v === tclass}
+            onClick={()=>travellerHandler(v)}
           >
             {v}
           </TravellerLi>

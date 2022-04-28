@@ -21,21 +21,24 @@ const LocationList = (props) => {
             {v.data.map((data, index) => (
               <LocationLi key={index}>
                 <LocationData
+                  key={data.id}
                   onClick={() =>
                     props.locationFixed({
+                      id:data.id,
                       name: data.name,
-                      label: data.label,
-                      code: data.shortName,
+                      contry:data.contry,
+                      description: data.description,
+                      code: data.code,
                     })
                   }
                 >
                   <LocationNameLabel>
                     <LocationName>
-                      {data.name},{data.place}{" "}
+                      {data.name},{data.contry}{" "}
                     </LocationName>
-                    <LocationLabel>{data.label} </LocationLabel>
+                    <LocationLabel>{data.description} </LocationLabel>
                   </LocationNameLabel>
-                  <LocationSName>{data.shortName} </LocationSName>
+                  <LocationSName>{data.code} </LocationSName>
                 </LocationData>
               </LocationLi>
             ))}

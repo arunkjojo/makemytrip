@@ -180,6 +180,9 @@ export const Button = styledComponents.button`
   opacity: 1;
   line-height: 24px;
 
+  ${({disactive}) => disactive && `
+    display: none;
+  `}
 `;
 
 export const Paragraph = styledComponents.p`
@@ -320,16 +323,15 @@ export const TravellerDropDiv = styledComponents.div`
   right: 0;
   top: 35px;
   width: 410px;
-  padding: 20px 40px;
-  z-index: 11;
-  width: 610px !important;
-  padding: 30px 40px;
+  padding: 20px 20px;
+  z-index: 1;
+  width: 600px !important;
   display: flex;
   flex-direction: column;
-
-  font-size: 12px;
-  line-height: 12px;
 `;
+
+export const TravellerClassDiv = styledComponents.div`
+`
 
 // // LocationWidget //
 
@@ -337,6 +339,10 @@ export const LocationWidgetDiv = styledComponents("div")`
   width: 300px;
   height: 112px;
   border-right: solid 1px #e7e7e7;
+  :hover {
+    background: #fafafa;
+    color: #008cff;
+  }
 `;
 
 
@@ -413,17 +419,25 @@ export const DateWidgetDiv = styledComponents("div")`
   width: 158px;
   height: 112px;
   border-right: solid 1px #e7e7e7;
+  :hover {
+    background: #fafafa;
+  }
+  
 `;
 
-export const DateWidgetLabel = styledComponents.label`
+export const WidgetLabel = styledComponents.label`
   padding: 10px 19px;
   color: gray;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+
+  ${({active})=> active && `
+    color: #008cff;
+  `}
 `;
 
-export const DateWidgetSpan = styledComponents.span`
+export const WidgetSpan = styledComponents.span`
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 5px;
@@ -443,23 +457,31 @@ export const DateWidgetInput = styledComponents.input.attrs({
   margin: 0px;
 `;
 
-export const DateWidgetValue = styledComponents.p`
+export const WidgetValue = styledComponents.p`
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+
+  font-weight: 400;
+
   margin-bottom: 0px;
   margin-top: 0px;
 
   color: #000;
   font-family: Lato;
-  .date {
+  .headTilte {
     font-weight: 900;
     font-size: 30px;
   }
-  .month,
-  .year {
+  .subTiitle {
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 500;
   }
-  .day {
-    color: gray;
+  .para {
+    color: #4a4a4a;
+    font-size: 14px;
   }
 `;
 
@@ -476,12 +498,20 @@ export const DateWidgetDrop = styledComponents.div`
 
 // // TravellerCount TravellerClass //
 
-export const TravellerUl = styledComponents.div`
+export const TravellerUl = styledComponents.ul`
   display: inline-flex;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 20%);
+  margin-bottom: 24px;
   align-items: center;
+  color: #4a4a4a;
+  position: relative;
+  font-size: 11px !important;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 32px;
 
   ${({ extra }) =>
     extra &&
@@ -495,10 +525,11 @@ export const TravellerLi = styledComponents.li`
   justify-content: center;
   display: flex;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  min-width: 15px;
+  height: 32px;
   position: relative;
   z-index: 2;
+  color: #4a4a4a;
   :hover {
     background: rgb(0 0 0 / 10%);
   }
@@ -526,28 +557,32 @@ export const TravellerP = styledComponents.p`
   font-weight: 700;
   font-size: 12px;
   line-height: 12px;
+  margin-bottom: 10px;
+  color: #4a4a4a;
 `;
 
 export const TravellerDiv = styledComponents.div`
-  margin-right: 10px;
-  position: relative;
-  font-size: 11px !important;
+  margin-bottom: 25px;
+  ${({flexColum})=> flexColum && `
+    flex-direction: column;
+  `}
+  margin-right: 15px;
+  margin-left: 0px;
 `;
 
 // // LocationList //
 
 export const LocationDiv = styledComponents.div`
-  top: 35px;
+  width: 300px;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 1px 6px 0 rgb(0 0 0 / 20%);
-  width: 316px;
   position: relative;
   left: 0;
-  top: 23px;
-  min-height: 316px;
-  overflow-y: auto;
+  top: -60px;
   z-index: 999999;
+  overflow-y: auto;
+  max-height:300px;
 `;
 
 export const LocationUl = styledComponents.ul`
@@ -802,3 +837,15 @@ export const PagesMainDiv = styledComponents.div`
   background-color: #fff;
   padding: 60px 20px 0;
 `;
+
+export const Error = styledComponents.p`
+  color: red !important;
+  font-size: 15px;
+  line-height: 15px;
+`
+export const ApplyFooter = styledComponents.div`
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 20px;
+`

@@ -5,48 +5,67 @@ import TravellerWidget from "../../widgets/TravellerWidget";
 import { SearchBoxDiv, SpinCircle, SpinIcon } from "../../customStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLocation } from "../../redux/locationSlice";
+import MultiCity from "./MultiCity";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
+  const tripType = useSelector(state => state.tripType);
   const locationValue = useSelector(state => state.location);
   const dateValue = useSelector(state => state.date);
+  
   const toggleLocationHandler = () => {
     dispatch(toggleLocation(locationValue));
   }
+
+  function locationChangeHandler(type, location){
+    // console.log(type, location);
+  }
+
   return (
-    <SearchBoxDiv>
-      <LocationWidget
-        label="From"
-        widthValue="300"
-        primaryKey="from"
-        id={locationValue.from.id}
-        name={locationValue.from.name}
-        contry={locationValue.from.contry}
-        description={locationValue.from.description}
-        code={locationValue.from.code}
-      />
+    tripType.value === 'MULTI CITY' 
+    ? (
+      <MultiCity />
+    )
+    : (
+      <SearchBoxDiv>
+        <LocationWidget
+          label="From"
+          widthValue="300px"
+          primaryKey="from"
+          id={locationValue.from.id}
+          name={locationValue.from.name}
+          contry={locationValue.from.contry}
+          description={locationValue.from.description}
+          code={locationValue.from.code}
+          onLocationChange={(data)=>locationChangeHandler('from', data)}
+        />
 
-      <SpinCircle onClick={toggleLocationHandler}>
-        <SpinIcon/>
-      </SpinCircle>
+        <SpinCircle onClick={(e)=>{
+          e.preventDefault();
+          toggleLocationHandler()
+        }}>
+          <SpinIcon/>
+        </SpinCircle>
 
-      <LocationWidget
-        label="To"
-        widthValue="300"
-        primaryKey="to"
-        id={locationValue.to.id}
-        name={locationValue.to.name}
-        contry={locationValue.to.contry}
-        description={locationValue.to.description}
-        code={locationValue.to.code}
-      />
+        <LocationWidget
+          label="To"
+          widthValue="300px"
+          primaryKey="to"
+          id={locationValue.to.id}
+          name={locationValue.to.name}
+          contry={locationValue.to.contry}
+          description={locationValue.to.description}
+          code={locationValue.to.code}
+          onLocationChange={(data)=>locationChangeHandler('to', data)}
+        />
 
-      <DateWidget primaryKey="from" label="Departure" date={new Date(dateValue.departure.date)} widthValue="158" />
+        <DateWidget primaryKey="from" label="Departure" date={new Date(dateValue.departure)} widthValue="158px" />
 
-      <DateWidget primaryKey="to" label="Return" date={new Date(dateValue.returns.date)} widthValue="158" />
+        <DateWidget disAble={tripType.value === "ONEWAY"} primaryKey="to" label="Return" date={new Date(dateValue.return)} widthValue="158px" />
 
-      <TravellerWidget />
-    </SearchBoxDiv>
+        <TravellerWidget widthValue="260px"/>
+      </SearchBoxDiv>
+    )
   );
 };
 export default SearchBox;

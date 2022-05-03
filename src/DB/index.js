@@ -95,27 +95,44 @@ export const tripLabel = [
 export const Fare = [
   {
     id: 1,
-    name: "Regular Fares"
+    name: "Regular"
   },
   {
     id: 2,
-    name: "Armed Force Fares",
+    name: "Armed Force",
     newItem: true,
+    description:{
+      label:"Armed Forces Fares",
+      message:"Applicable for serving and retired personnel of Armed Forces and Paramilitary Forces, their recognised dependants like spouses and children, and war widows. It is mandatory to show a valid ID or dependant card at the airport, without which boarding might be denied."
+    }
   },
   {
     id: 3,
-    name: "Student Fares",
+    name: "Student",
+    description:{
+      label:"Student Fares",
+      message:"Only students above 12 years of age are eligible for special fares and/or additional baggage allowances. Carrying valid student ID cards and student visas (where applicable) is mandatory, else the passenger may be denied boarding or asked to pay for extra baggage."
+    }
   },
   {
     id: 4,
-    name: "Senior Citizen Fares",
+    name: "Senior Citizen",
+    description:{
+      label:"Senior Citizen Fares",
+      message:"Only senior citizens above the age of 60 years can avail this special fare. It is mandatory to produce proof of Date of Birth at the airport, without which prevailing fares will be charged."
+    }
   },
   {
     id: 5,
-    name: "Double Seat Fares",
+    name: "Double Seat",
+    description:{
+      label:"Fly Safer with Double Seat",
+      message:"Double Seat service is available only for domestic one-way economy flights. You can continue to book at the regular fare or change your search parameter(s) to avail of this service."
+    }
   },
 ];
 
+export const Trend = ["Pune --> Delhi", "Bangalore --> Chennai"]
 // // LocationWidget //
 
 export const locationData = [
@@ -124,14 +141,14 @@ export const locationData = [
     itemName: "Recent Search",
     data: [
       {
-        id: 1,
+        id: 'r1',
         name: "Delhi",
         contry: "India",
         code: "DEL",
         description: "Delhi Airport",
       },
       {
-        id: 2,
+        id: 'r2',
         name: "Mumbai",
         contry: "India",
         code: "BOM",
@@ -144,60 +161,60 @@ export const locationData = [
     itemName: "Popular City",
     data: [
       {
-        id: 1,
+        id: 'p1',
         name: "Delhi",
         contry: "India",
         code: "DEL",
         description: "Delhi Airport",
       },
       {
-        id: 2,
+        id: 'p2',
         name: "Mumbai",
         contry: "India",
         code: "BOM",
         description: "Chhatrapati Shivaji International Airport",
       },
       {
-        id: 3,
+        id: 'p3',
         name: "Mumbai",
         contry: "India",
         code: "BOM",
         description: "Chhatrapati Shivaji International Airport",
       },
       {
-        id: 4,
+        id: 'p4',
         name: "Delhi",
         contry: "India",
         code: "DEL",
         description: "Delhi Airport",
       },
       {
-        id: 5,
+        id: 'p5',
         name: "Mumbai",
         contry: "India",
         code: "BOM",
         description: "Chhatrapati Shivaji International Airport",
       },
       {
-        id: 6,
-        name: "Delhi",
+        id: 'p6',
+        name: "Bangalore",
         contry: "India",
-        code: "DEL",
-        description: "Delhi Airport",
+        code: "BEN",
+        description: "Bangalore Airport",
       },
       {
-        id: 7,
-        name: "Mumbai",
+        id: 'p7',
+        name: "Kolkatha",
         contry: "India",
-        code: "BOM",
-        description: "Chhatrapati Shivaji International Airport",
+        code: "KOL",
+        description: "Kolkatha International Airport",
       },
       {
-        id: 8,
-        name: "Delhi",
+        id: 'p8',
+        name: "Chennai",
         contry: "India",
-        code: "DEL",
-        description: "Delhi Airport",
+        code: "CHE",
+        description: "Chennai Airport",
       },
     ],
   },

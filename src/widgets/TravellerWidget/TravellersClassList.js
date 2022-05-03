@@ -2,17 +2,21 @@ import React from "react";
 import TravellerClass from "./TravellerClass";
 import TravellerCount from "./TravellerCount";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  changeClassCount,
-  changeShowTraveller,
-} from "../../redux/travellerSlice";
+import { changeClassCount } from "../../redux/flightSlice";
 import { TravellerData } from "../../DB";
-import { TravellerClassDiv, FlexDiv, Button, ApplyFooter, Error } from "../../customStyle";
+import {
+  TravellerClassDiv,
+  FlexDiv,
+  Button,
+  TravellerBody,
+  TravellerFooter,
+  ErrorMessage,
+} from "../../customStyle";
 
 const TravellersClassList = (props) => {
   var error = null;
-  const travellerCount = useSelector((state) => state.traveller.count);
-  const travellerClass = useSelector((state) => state.traveller.classes);
+  const travellerCount = useSelector((state) => state.flight.count);
+  const travellerClass = useSelector((state) => state.flight.classes);
   const dispatch = useDispatch();
   const adultHandler = (data) => {
     const adult = data;
@@ -81,59 +85,51 @@ const TravellersClassList = (props) => {
       })
     );
   };
-  if(travellerCount.adult < travellerCount.infant){
-    error='Number of infants cannot be more than adults'
+  if (travellerCount.infant > travellerCount.adult) {
+    error = "Number of infants cannot be more than adults";
   }
   return (
     <TravellerClassDiv>
-      <TravellerCount
-        value={travellerCount.adult}
-        paragraph="ADULTS (12y +)"
-        start={1}
-        end={9}
-        travellerCounter={adultHandler}
-      />
-      <FlexDiv>
+      <TravellerBody>
         <TravellerCount
-          marginRight="57px"
-          flexColum={true}
-          value={travellerCount.children}
-          paragraph="CHILDREN (2y - 12y )"
-          start={0}
-          end={6}
-          travellerCounter={childrenHandler}
+          value={travellerCount.adult}
+          paragraph="ADULTS (12y +)"
+          start={1}
+          end={9}
+          travellerCounter={adultHandler}
         />
+        <FlexDiv>
+          <TravellerCount
+            marginRight="57px"
+            flexColum={true}
+            value={travellerCount.children}
+            paragraph="CHILDREN (2y - 12y )"
+            start={0}
+            end={6}
+            travellerCounter={childrenHandler}
+          />
 
-        <TravellerCount
-          flexColum={true}
-          marginLeft="0px"
-          value={travellerCount.infant}
-          paragraph="INFANTS (below 2y)"
-          start={0}
-          end={6}
-          travellerCounter={infantHandler}
+          <TravellerCount
+            flexColum={true}
+            marginLeft="0px"
+            value={travellerCount.infant}
+            paragraph="INFANTS (below 2y)"
+            start={0}
+            end={6}
+            travellerCounter={infantHandler}
+          />
+        </FlexDiv>
+        <TravellerClass
+          value={travellerClass}
+          data={TravellerData}
+          paragraph="CHOOSE TRAVEL CLASS"
+          TravellerClassHandler={classesHandler}
         />
-      </FlexDiv>
-      <TravellerClass
-        value={travellerClass}
-        data={TravellerData}
-        paragraph="CHOOSE TRAVEL CLASS"
-        TravellerClassHandler={classesHandler}
-      />
-      <ApplyFooter>
-        <div>
-          {error && <Error>{error}</Error>}
-        </div>
-        <Button
-          disabled={error!==null}
-          disactive={error!==null}
-          onClick={() => {
-            dispatch(changeShowTraveller(false));
-          }}
-        >
-          Apply
-        </Button>
-      </ApplyFooter>
+      </TravellerBody>
+      <TravellerFooter>
+        <div>{error && <ErrorMessage size={11}>{error}</ErrorMessage>}</div>
+        <Button onClick={props.onApply}>Apply</Button>
+      </TravellerFooter>
     </TravellerClassDiv>
   );
 };

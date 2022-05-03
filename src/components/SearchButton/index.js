@@ -9,7 +9,7 @@ const SearchButton = (props) => {
   }
   return (
     <Paragraph>
-      <Button style={searchMain}>Search</Button>
+      <Button mainButton style={searchMain}>Search</Button>
     </Paragraph>
   );
 };

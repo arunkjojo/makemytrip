@@ -4,20 +4,19 @@ export const locationSlice = createSlice({
   name: "location",
   initialState: {
     from: {
-      id: 1,
+      id: 'r2',
       name: "Mumbai",
       contry: "India",
       code: "MOB",
       description: "Chhatrapati Shivaji International Airport",
     },
     to: {
-      id: 2,
+      id: 'r1',
       name: "Delhi",
       contry: "India",
       code: "DEL",
       description: "Delhi Airport",
-    },
-    showLocation: false,
+    }
   },
   reducers: {
     changeFromLocation: (state, action) => {
@@ -30,12 +29,6 @@ export const locationSlice = createSlice({
       return {
         ...state,
         to: action.payload
-      };
-    },
-    changeShowLocation: (state, action) => {
-      return {
-        ...state,
-        showLocation: action.payload
       };
     },
     toggleLocation: (state, action) => {
@@ -51,7 +44,6 @@ export const locationSlice = createSlice({
 export const {
   changeFromLocation,
   changeToLocation,
-  changeShowLocation,
   toggleLocation,
 } = locationSlice.actions;
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Datepicker, START_DATE } from "@datepicker-react/styled";
 // import { DateWrapper, DatePickerHeader, DatePickerMain, CalHeading, DateFeild, DatePara, CalSpan, SelectDateField, DashedSpan, DayWrapper, DayHeader, PreMonth, NxtMonth, MonthPicker, MonthList, DayPickerCaption, DayPickerWeekdays, WeekDays, Day, DayPickerBody, DayPickerWeek} from "../../customStyle";
+import { useDispatch } from "react-redux";
+import { changeTrip, changeDate } from "../../redux/flightSlice";
 
 const DatePickerComponent = (props) => {
   const [state, setState] = useState({
@@ -8,7 +10,7 @@ const DatePickerComponent = (props) => {
     endDate: null, //dateValue.returns.full_date,
     focusedInput: START_DATE,
   });
-
+  const dispatch = useDispatch();
   function handleDatesChange(data) {
     if (!data.focusedInput) {
       setState({ 
@@ -18,12 +20,24 @@ const DatePickerComponent = (props) => {
     } else {
       setState(data);
     }
-    props.dateChangeHandler(data);
+    dispatch(
+      changeDate({
+        departure: data.startDate,
+        returns: data.endDate,
+      })
+    );
+
+    if(data.endDate){
+      dispatch(changeTrip("ROUND TRIP"));
+    }
+    // props.dateChangeHandler(data);
   }
 
   return (
     <>
       <Datepicker
+        showClose={false}
+        showResetDates={false}
         onDatesChange={handleDatesChange}
         minBookingDate={new Date()}
         startDate= {state.startDate} // Date or null

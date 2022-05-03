@@ -22,10 +22,18 @@ const FareWidget = (props) => {
             key={value.id}
           >
             <RedioItem id={value.id} checked={value.id === fareDataId} />
-            <LabelItem htmlFor={value.id}>
+            <LabelItem className="labelItem" htmlFor={value.id}>
               {value.name}
+              <br/>
+              Fares
               {value.newItem && <span>New</span>}{" "}
             </LabelItem>
+            {value.description && (
+              <div className="specialFareTooltip">
+                <p className="label">{value.description.label}</p>
+                <p className="message">{value.description.message}</p>
+              </div>
+            )}
           </FareWidgetItems>
         ))}
       </FareWidgetType>

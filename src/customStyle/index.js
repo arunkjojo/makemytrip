@@ -132,7 +132,6 @@ export const SearchBoxDiv = styledComponents.div`
   align-items: center;
   border: solid 1px #e7e7e7;
   position: relative;
-  z-index: 0;
 `;
 
 export const SpinCircle = styledComponents.span`
@@ -176,12 +175,14 @@ export const Button = styledComponents.button`
   outline: 0;
   border: 0;
   font-weight: 700;
-  margin-bottom: -32px;
   opacity: 1;
   line-height: 24px;
 
   ${({disactive}) => disactive && `
     display: none;
+  `}
+  ${({mainButton}) => mainButton && `
+    margin-bottom: -32px;
   `}
 `;
 
@@ -278,42 +279,81 @@ export const TrendingLi = styledComponents.li`
   `}
 `;
 
-// // TravellerWidget //
+// // Widgets //
 
 export const WidgetDiv = styledComponents("div")`
   height: 112px;
-  border-right: solid 1px #fff;
+  border-right: solid 1px ${p=>p.borderRightColor?p.borderRightColor:'#e7e7e7'};
+  :hover {
+    background: #fafafa;
+  }
+  ${({widthValue})=> widthValue && `
+    width: ${widthValue};
+  `}
 `;
 
-export const DivLabel = styledComponents.label`
+export const WidgetLabel = styledComponents.label`
   padding: 10px 19px;
+  color: gray;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  color: gray;
+
 `;
 
-export const Span = styledComponents.span`
+export const WidgetSpan = styledComponents.span`
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 5px;
+
+  ${({active})=> active && `
+    color: #008cff;
+  `}
+  ${({dropDown})=> dropDown && `
+    :after {
+      border: solid #008cff;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      content: '';
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      vertical-align: top;
+      margin: 3px 0 0 8px;
+      transition: all 0.3s ease-in-out;
+    }
+  `}
 `;
 
-export const DivValue = styledComponents.span`
-  font-family: Lato;
-  line-height: 36px;
-  border: 0;
-  outline: 0;
+export const WidgetValue = styledComponents.p`
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+
+  font-weight: 400;
+
+  margin-bottom: 0px;
+  margin-top: 0px;
+
   color: #000;
-  background: none;
-  min-width: 140px;
-  max-height: 36px;
-  cursor: pointer;
-  padding: 0px;
-  margin: 0px;
-  font-size: 30px;
-
+  font-family: Lato;
+  .headTilte {
+    font-weight: 900;
+    font-size: 30px;
+  }
+  .subTiitle {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .para {
+    color: #4a4a4a;
+    font-size: 14px;
+  }
 `;
+
+// // TravellerWidget //
 
 export const TravellerDropDiv = styledComponents.div`
   border-radius: 4px;
@@ -330,21 +370,19 @@ export const TravellerDropDiv = styledComponents.div`
   flex-direction: column;
 `;
 
-export const TravellerClassDiv = styledComponents.div`
+export const TravellerClassDiv = styledComponents.div``
+
+export const TravellerBody = styledComponents.div`
+  margin-bottom: 20px;
+`
+
+export const TravellerFooter = styledComponents.div`
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
 `
 
 // // LocationWidget //
-
-export const LocationWidgetDiv = styledComponents("div")`
-  width: 300px;
-  height: 112px;
-  border-right: solid 1px #e7e7e7;
-  :hover {
-    background: #fafafa;
-    color: #008cff;
-  }
-`;
-
 
 export const LocationDescription = styledComponents.p`
   position: relative;
@@ -385,6 +423,19 @@ export const FareWidgetHeading = styledComponents.span`
   margin-top: -15px;
 `;
 export const FareWidgetItems = styledComponents.li`
+  
+  // :before{
+  //   content: "";
+  //   width: 12px;
+  //   height: 12px;
+  //   border-radius: 100%;
+  //   border: solid 1px #9b9b9b;
+  //   display: flex;
+  //   flex-shrink: 0;
+  //   position: relative;
+  //   left: 8px;
+  // }
+
   padding: 0px 6px 8px 0px;
   cursor: pointer;
   font-size: 12px;
@@ -403,8 +454,67 @@ export const FareWidgetItems = styledComponents.li`
     `
     border-radius: 4px;
     background: #eaf5ff;
+    // :before{
+    //   background: #008cff;
+    //   border-color: #008cff;
+    // }
+    // :after{
+    //   display: inline-block;
+    // }
   `}
-  
+
+  // :after{
+  //   display: inline-block;
+  //   content: "";
+  //   -webkit-transform: rotate(45deg);
+  //   -ms-transform: rotate(45deg);
+  //   transform: rotate(45deg);
+  //   height: 10px;
+  //   width: 5px;
+  //   border-bottom: 1px solid #fff;
+  //   border-right: 1px solid #fff;
+  //   position: absolute;
+  //   left: 93px;
+  //   top: 258px;
+  // }
+  .labelItem {
+    list-style: none;
+    margin-left: 10px;
+    padding: 0;
+  }
+  .specialFareTooltip{
+    position: relative;
+    min-width: 200px;
+    top: 100px;
+    left: -75px;
+
+    padding: 6px;
+    text-transform: none;
+    box-shadow: 0 2px 7px 0 rgb(0 0 0 / 30%);
+    z-index: 3;
+    background-color: #249995;
+    display: none;
+    border-radius: 4px;
+    font-weight: normal;
+    color: #fff;
+    line-height: 14px !important;
+
+  }
+  .label {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 5px;
+  }
+  .message {
+    font-size: 11px;
+    line-height: 11px;
+  }
+  :hover{
+    .specialFareTooltip{
+      display: block;
+    }
+  }
 `;
 
 export const LabelItem = styledComponents.div`
@@ -414,34 +524,6 @@ export const LabelItem = styledComponents.div`
 `;
 
 // // DateWidget //
-
-export const DateWidgetDiv = styledComponents("div")`
-  width: 158px;
-  height: 112px;
-  border-right: solid 1px #e7e7e7;
-  :hover {
-    background: #fafafa;
-  }
-  
-`;
-
-export const WidgetLabel = styledComponents.label`
-  padding: 10px 19px;
-  color: gray;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-
-  ${({active})=> active && `
-    color: #008cff;
-  `}
-`;
-
-export const WidgetSpan = styledComponents.span`
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 5px;
-`;
 
 export const DateWidgetInput = styledComponents.input.attrs({
   type: "hidden",
@@ -455,34 +537,13 @@ export const DateWidgetInput = styledComponents.input.attrs({
   cursor: pointer;
   padding: 0px;
   margin: 0px;
-`;
-
-export const WidgetValue = styledComponents.p`
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-
-  font-weight: 400;
-
-  margin-bottom: 0px;
-  margin-top: 0px;
-
-  color: #000;
-  font-family: Lato;
-  .headTilte {
+  
+  ${({disAble}) => disAble &&`
+    color: #9b9b9b !important;
     font-weight: 900;
-    font-size: 30px;
-  }
-  .subTiitle {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  .para {
-    color: #4a4a4a;
-    font-size: 14px;
-  }
+    font-size: 12px;
+    line-height: 16px !important;
+  `}
 `;
 
 export const DateWidgetDrop = styledComponents.div`
@@ -581,10 +642,26 @@ export const LocationDiv = styledComponents.div`
   left: 0;
   top: -60px;
   z-index: 999999;
-  overflow-y: auto;
-  max-height:300px;
+  overflow: hidden;
+
+  :after {
+    width: 10px;
+    height: 10px;
+    background: url(//imgak.mmtcdn.com/pwa_v3/pwa_commons_assets/desktop/spriteModifySearch.png) no-repeat;
+    background-size: 50px 50px;
+    background-position: -20px -5px;
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 15px;
+  }
 `;
 
+export const LocationListDiv = styledComponents.div`
+  max-height: 270px;
+  list-style: none;
+  overflow-y: auto;
+`
 export const LocationUl = styledComponents.ul`
   max-height: 270px;
   list-style: none;
@@ -838,14 +915,142 @@ export const PagesMainDiv = styledComponents.div`
   padding: 60px 20px 0;
 `;
 
-export const Error = styledComponents.p`
-  color: red !important;
-  font-size: 15px;
-  line-height: 15px;
+export const SearchInput = styledComponents.input.attrs({
+  type: 'text',
+  autoCompletion:false,
+  placeholder:'From',
+  ariaAutocomplete:'list',
+  AutoFocus:true,
+})`
+  background: #ffffff;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+  padding: 11px 10px 11px 30px;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 700;
+  position:relative;
+
 `
-export const ApplyFooter = styledComponents.div`
-  align-items: center;
-  justify-content: space-between;
+export const AvailableDiv = styledComponents.div`
+  position: relative;
+  top: 3px;
+  display: -ms-flexbox;
   display: flex;
-  margin-bottom: 20px;
+  flex-direction: column;
+`
+
+export const AvailableNotify = styledComponents.span`
+  display: flex;
+  align-items: center;
+  height: 14px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  color: #cf8100;
+`
+
+export const ErrorSection = styledComponents.div`
+  display: flex;
+  width: auto;
+  box-shadow: 0 2px 7px 0 rgb(0 0 0 / 30%);
+  z-index: 1;
+  background-color: #ffd3d4;
+  position: relative;
+  top: 10px;
+  left: 0;
+  border-radius: 4px;
+  padding: 4px 8px;
+
+  :after {
+    bottom: 100%;
+    left: 20%;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-bottom-color: #ffd3d4;
+    border-width: 8px;
+    margin-left: -24px;
+}
+`
+export const ErrorIcon = styledComponents.span`
+  width: 16px;
+  height: 16px;
+  background-position: -1px -432px;
+
+  background-image: url(https://imgak.mmtcdn.com/pwa_v3/pwa_commons_assets/desktop/landingSprite@20x.webp);
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: 200px 650px;
+  font-size: 0px;
+  flex-shrink: 0;
+
+  margin-right: 10px;
+`
+export const ErrorMessage = styledComponents.p`
+  color: red !important;
+  font-size: ${p=>p.size?p.size:'13'}px;
+  line-height: ${p=>p.size?p.size:'13'}px;
+  margin:0;
+`
+
+export const CloseIcon = styledComponents.span`
+  position: absolute;
+  bottom: 80px;
+  right: 265px;
+  z-index: 1;
+  cursor: pointer;
+
+  background-image: url(//imgak.mmtcdn.com/pwa_v3/pwa_commons_assets/desktop/landingSprite@20x.webp);
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: 200px 650px;
+  font-size: 0px;
+  flex-shrink: 0;
+
+  width: 20px;
+  height: 20px;
+  background-position: -145px -59px;
+
+  ${({city})=> city&&`
+    position: revert;
+    width: 42px;
+    height: 32px;
+    background-position: -166px -53px;
+  `}
+`
+
+export const AddNewSearchBox = styledComponents.div`
+  width: 138px;
+  height: 32px;
+  margin-right:20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
+  background-color: #ffffff;
+  border: solid 1px #008cff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+  color: #008cff;
+  outline: 0;
+  margin-left: 20px;
+`
+
+export const RemoveCity = styledComponents.div`
+  display: flex;
+  border-left: solid 1px #e7e7e7;
+  width: 94px;
+  height: 95px;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
 `

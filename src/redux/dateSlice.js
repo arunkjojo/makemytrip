@@ -3,33 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dateSlice = createSlice({
   name: "date",
   initialState: {
-    departure: {
-      date: new Date().toDateString()
-    },
-    returns: {
-      date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString()
-    },
-    showDate: false,
+    departure: new Date().toDateString(),
+    return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
   },
   reducers: {
     changeDate: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         ...action.payload,
-      };
-    },
-    changeShowDate: (state, action) => {
-      console.log(action.payload);
-      return {
-        ...state,
-        showDate: action.payload,
       };
     }
   },
 });
 
-export const { changeDate, changeShowDate } =
+export const { changeDate } =
   dateSlice.actions;
 
 export default dateSlice.reducer;

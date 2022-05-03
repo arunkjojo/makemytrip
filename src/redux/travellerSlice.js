@@ -10,25 +10,17 @@ export const travellerSlice = createSlice({
       total: 1,
     },
     classes: "Economy/Premium Economy",
-    showTraveller:false,
   },
   reducers: {
     changeClassCount: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         ...action.payload
-      }
-    },
-    changeShowTraveller: (state, action) => {
-      return {
-        ...state,
-        showTraveller: action.payload
       }
     }
   },
 });
 
-export const { changeClassCount, changeShowTraveller } = travellerSlice.actions;
+export const { changeClassCount } = travellerSlice.actions;
 
 export default travellerSlice.reducer;

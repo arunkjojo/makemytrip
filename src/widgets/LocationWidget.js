@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import LocationList from "./LocationWidget/LocationList";
 import { useSelector, useDispatch } from "react-redux";
-import { changeShowDate } from "../redux/dateSlice";
-import { changeShowTraveller } from "../redux/travellerSlice";
 import {
   changeFromLocation,
   changeToLocation,
-  changeShowLocation,
 } from "../redux/locationSlice";
 import {
-  LocationWidgetDiv,
-  // DivLabel,
+  WidgetDiv,
   WidgetLabel,
-  // Span,
   WidgetSpan,
-  //DivValue,
   WidgetValue,
-  //LocationDescription,
   LocationDropDiv,
+  ErrorSection,
+  ErrorIcon,
+  ErrorMessage
 } from "../customStyle";
 import { locationData } from "../DB";
+import useComponentVisible from "../helper/useComponentVisible";
+
+import {
+  changeLocations
+} from "../redux/flightSlice";
 
 const LocationWidget = (props) => {
-  const locationValue = useSelector((state) => state.location);
+  const locations = useSelector(state => state.location);
+  const {
+    ref,
+    isComponentVisible,
+    setIsComponentVisible
+  } = useComponentVisible(false);
+  const [visible, setVisible] = useState(false);
+
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
+    setVisible(false);
     if (props.primaryKey === "from") {
       let from = {
         id: data.id,
@@ -34,6 +43,7 @@ const LocationWidget = (props) => {
         code: data.code,
       };
       dispatch(changeFromLocation(from));
+
     } else if (props.primaryKey === "to") {
       let to = {
         id: data.id,
@@ -43,34 +53,59 @@ const LocationWidget = (props) => {
         code: data.code,
       };
       dispatch(changeToLocation(to));
-    }
-  };
+    } else{
+      let intermediate = {
+        id: data.id,
+        name: data.name,
+        contry: data.contry,
+        description: data.description,
+        code: data.code,
+      };
 
-  const showLocationHandler = () => {
-    dispatch((
-      changeShowTraveller(false),
-      changeShowDate(false),
-      changeShowLocation(!locationValue.showLocation)
-    ));
+      dispatch(changeLocations({
+        primaryIndex: props.countNumber,
+        from: intermediate,
+        to: intermediate,
+        departure: new Date().toDateString(),
+        return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
+      }));
+    }
+
+    props.onLocationChange(data);
   };
   return (
-    <LocationWidgetDiv onClick={showLocationHandler}>
+    <WidgetDiv 
+      widthValue={props.widthValue}
+      ref={ref} 
+      onClick={(e) =>{
+        e.preventDefault();
+        setVisible(true);
+        setIsComponentVisible(true);
+      }}
+    >
       <WidgetLabel 
-        active={locationValue.showLocation}
-        onClick={showLocationHandler} 
         htmlFor={props.label}
       >
-        <WidgetSpan>{props.label}</WidgetSpan>
+        <WidgetSpan active={isComponentVisible}>{props.label}</WidgetSpan>
         <WidgetValue
           style={{ fontWeight: 900 }}
         >
           <span className="headTilte">{props.name}</span>
         </WidgetValue>
         <WidgetValue>
-          <span className="para">{props.code}, {props.description}</span>
+          <span className="para">{props.code}{props.code!==''?',':null} {props.description}</span>
         </WidgetValue>
+
+        {props.primaryKey=== 'to' && locations.from.id === locations.to.id && (
+          <ErrorSection>
+            <ErrorIcon />
+            <ErrorMessage>
+              From & To airports cannot be the same
+            </ErrorMessage>
+          </ErrorSection>
+        )}
       </WidgetLabel>
-      {locationValue.showLocation && (
+      {visible && isComponentVisible && (
         <LocationDropDiv>
           <LocationList
             data={locationData}
@@ -78,7 +113,7 @@ const LocationWidget = (props) => {
           />
         </LocationDropDiv>
       )}
-    </LocationWidgetDiv>
+    </WidgetDiv>
   );
 };
 

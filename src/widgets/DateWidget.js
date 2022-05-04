@@ -37,10 +37,7 @@ const DateWidget = (props) => {
           <>
             {props.primaryKey === "to"? <CloseIcon onClick={(e)=>{
               e.stopPropagation();
-              dispatch(changeTrip({
-                id:1,
-                value:"ONEWAY"
-              }));
+              dispatch(changeTrip("ONEWAY"));
             }}/>:null}
             <WidgetValue>
               <span className="headTilte">

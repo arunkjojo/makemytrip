@@ -1,6 +1,6 @@
 {
   "name": "make-my-trip",
-  "version": "0.1.2",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "@datepicker-react/styled": "^2.8.4",
@@ -11,6 +11,7 @@
     "firebase": "^9.6.11",
     "moment": "^2.29.3",
     "react": "^18.0.0",
+    "react-autosuggest": "^10.1.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",

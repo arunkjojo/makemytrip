@@ -9,7 +9,7 @@ import MultiCity from "./MultiCity";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const tripType = useSelector(state => state.tripType);
+  const tripType = useSelector(state => state.tripType.tripType);
   const locationValue = useSelector(state => state.location);
   const dateValue = useSelector(state => state.date);
   
@@ -22,7 +22,7 @@ const SearchBox = () => {
   }
 
   return (
-    tripType.value === 'MULTI CITY' 
+    tripType=== 'MULTI CITY' 
     ? (
       <MultiCity />
     )
@@ -61,7 +61,7 @@ const SearchBox = () => {
 
         <DateWidget primaryKey="from" label="Departure" date={new Date(dateValue.departure)} widthValue="158px" />
 
-        <DateWidget disAble={tripType.value === "ONEWAY"} primaryKey="to" label="Return" date={new Date(dateValue.return)} widthValue="158px" />
+        <DateWidget disAble={tripType === "ONEWAY"} primaryKey="to" label="Return" date={new Date(dateValue.return)} widthValue="158px" />
 
         <TravellerWidget widthValue="260px"/>
       </SearchBoxDiv>

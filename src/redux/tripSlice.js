@@ -3,14 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const tripSlice = createSlice({
   name: "tripType",
   initialState: {
-    id:1,
-    value:"ONEWAY"
+    tripType:"ONEWAY"
   },
   reducers: {
-    changeTrip: (state, action) => {
+    changeTrip: (state,action) => {
       return {
         ...state,
-        ...action.payload
+        tripType:action.payload
       }
     }
   },

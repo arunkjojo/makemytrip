@@ -138,7 +138,7 @@ export const flightSlice = createSlice({
       if(state.trip.length > index ){
         var changeFrom = action.payload.to;
       }
-      console.log(state.trip.length , index, changeFrom)
+      // console.log(state.trip.length , index, changeFrom)
       return {
         ...state,
         trip: { 

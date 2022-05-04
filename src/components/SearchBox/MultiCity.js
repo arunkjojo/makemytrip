@@ -12,7 +12,7 @@ const MultiCity = (props) => {
     const tripData = useSelector(state => state.flight.trip);
     
     function locationChangeHandler(type, location, index){
-        console.log(type, location, index);
+        // console.log(type, location, index);
 
         dispatch(changeLocations({
             primaryIndex: index,

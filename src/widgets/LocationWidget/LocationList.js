@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
+import AutoSuggection from "../../components/SearchInput/AutoSuggection";
 import {
   LocationDiv,
   Label,
@@ -9,22 +10,17 @@ import {
   LocationName,
   LocationLabel,
   LocationSName,
-  SearchInput,
-  LocationListDiv
+  LocationListDiv,
 } from "../../customStyle";
 
 const LocationList = (props) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(false);
 
   return (
     <LocationDiv>
-      <SearchInput value={searchValue} onChange={(e)=>setSearchValue(e.target.value)}/>
+      <AutoSuggection />
       <LocationListDiv>
-        {searchValue!=='' ?( 
-          <div>
-            <Label>SUGGESTIONS</Label>
-          </div>
-        ): (
+        {searchValue ? null : (
           props.data.map((v, i) => (
             <div key={i}>
               <Label>{v.itemName}</Label>
@@ -33,15 +29,15 @@ const LocationList = (props) => {
                   <LocationLi key={index}>
                     <LocationData
                       key={data.id}
-                      onClick={(e)=> {
+                      onClick={(e) => {
                         e.stopPropagation();
                         props.locationFixed({
-                          id:data.id,
+                          id: data.id,
                           name: data.name,
-                          contry:data.contry,
+                          contry: data.contry,
                           description: data.description,
                           code: data.code,
-                        })
+                        });
                       }}
                     >
                       <LocationNameLabel>
@@ -59,7 +55,6 @@ const LocationList = (props) => {
           ))
         )}
       </LocationListDiv>
-      
     </LocationDiv>
   );
 };

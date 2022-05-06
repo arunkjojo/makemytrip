@@ -34,7 +34,7 @@ const SearchBox = () => {
           primaryKey="from"
           id={locationValue.from.id}
           name={locationValue.from.name}
-          contry={locationValue.from.contry}
+          country={locationValue.from.country}
           description={locationValue.from.description}
           code={locationValue.from.code}
           onLocationChange={(data)=>locationChangeHandler('from', data)}
@@ -53,7 +53,7 @@ const SearchBox = () => {
           primaryKey="to"
           id={locationValue.to.id}
           name={locationValue.to.name}
-          contry={locationValue.to.contry}
+          country={locationValue.to.country}
           description={locationValue.to.description}
           code={locationValue.to.code}
           onLocationChange={(data)=>locationChangeHandler('to', data)}

@@ -129,99 +129,153 @@ export const Trend = ["Pune --> Delhi", "Bangalore --> Chennai"];
 export const locationData = [
   {
     id: "recent_data",
-    itemName: "Recent Search",
+    itemName: "RECENT SEARCH",
     data: [
       {
-        id: "r1",
-        name: "Delhi",
-        contry: "India",
+        id: "f1",
+        description: "Indira Gandhi International Airport",
+        name: "New Delhi",
+        country: "India",
+        countryCode: "IN",
         code: "DEL",
-        description: "Delhi Airport",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "r2",
-        name: "Mumbai",
-        contry: "India",
-        code: "BOM",
-        description: "Chhatrapati Shivaji International Airport",
-      },
-    ],
+        id: "f2",
+        description: "Jolly Grant Airport",
+        name: "Dehradun",
+        country: "India",
+        countryCode: "IN",
+        code: "DED",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      }
+    ]
   },
   {
     id: "popular_data",
-    itemName: "Popular City",
+    itemName: "POPULAR CITY",
     data: [
       {
-        id: "p1",
-        name: "Delhi",
-        contry: "India",
+        id: "f1",
+        description: "Indira Gandhi International Airport",
+        name: "New Delhi",
+        country: "India",
+        countryCode: "IN",
         code: "DEL",
-        description: "Delhi Airport",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "p2",
-        name: "Mumbai",
-        contry: "India",
-        code: "BOM",
-        description: "Chhatrapati Shivaji International Airport",
+        id: "f2",
+        description: "Jolly Grant Airport",
+        name: "Dehradun",
+        country: "India",
+        countryCode: "IN",
+        code: "DED",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "p3",
-        name: "Mumbai",
-        contry: "India",
-        code: "BOM",
-        description: "Chhatrapati Shivaji International Airport",
+        id: "f3",
+        description: "Mohanbari Airport",
+        name: "Dibrugarh",
+        country: "India",
+        countryCode: "IN",
+        code: "DIB",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "p4",
-        name: "Delhi",
-        contry: "India",
-        code: "DEL",
-        description: "Delhi Airport",
+        id: "f4",
+        description: "Dimapur Airport",
+        name: "Dimapur",
+        country: "India",
+        countryCode: "IN",
+        code: "DMU",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "p5",
-        name: "Mumbai",
-        contry: "India",
-        code: "BOM",
-        description: "Chhatrapati Shivaji International Airport",
+        id: "f5",
+        description: "Darbhanga Airport",
+        name: "Darbhanga",
+        country: "India",
+        countryCode: "IN",
+        code: "DBR",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
       },
       {
-        id: "p6",
-        name: "Bangalore",
-        contry: "India",
-        code: "BEN",
-        description: "Bangalore Airport",
-      },
-      {
-        id: "p7",
-        name: "Kolkatha",
-        contry: "India",
-        code: "KOL",
-        description: "Kolkatha International Airport",
-      },
-      {
-        id: "p8",
+        id: "f6",
         name: "Chennai",
-        contry: "India",
+        country: "India",
         code: "CHE",
         description: "Chennai Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
       },
-    ],
+      {
+        id: "f7",
+        description: "Sardar Vallabhbhai Patel International Airport",
+        name: "Ahmedabad",
+        country: "India",
+        countryCode: "IN",
+        code: "AMD",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      },
+      {
+        id: "f8",
+        description: "Sri Guru Ram Dass Jee International Airport",
+        name: "Amritsar",
+        country: "India",
+        countryCode: "IN",
+        code: "ATQ",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      },
+      {
+        id: "f9",
+        description: "Lengpui Airport",
+        name: "Aizawl",
+        country: "India",
+        countryCode: "IN",
+        code: "AJL",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      },
+      {
+        id: "f10",
+        description: "Adampur Airport",
+        name: "Adampur",
+        country: "India",
+        countryCode: "IN",
+        code: "AIP",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      },
+      {
+        id: "f11",
+        name: "Mumbai",
+        country: "India",
+        code: "BOM",
+        description: "Chhatrapati Shivaji International Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+      },
+      {
+        id: "f12",
+        name: "Bangalore",
+        country: "India",
+        code: "BEN",
+        description: "Bangalore Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+      },
+      {
+        id: "f13",
+        name: "Kolkatha",
+        country: "India",
+        code: "KOL",
+        description: "Kolkatha International Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+      }
+    ]
   },
-];
-
-// // TravellerClassList //
-
-export const TravellerData = [
-  "Economy/Premium Economy",
-  "Premium Economy",
-  "Business",
-];
-
-export const suggection_flight = [
   {
-    id: "suggection_flight",
+    id: "suggestion_data",
     itemName: "SUGGESTIONS",
     data: [
       {
@@ -271,12 +325,12 @@ export const suggection_flight = [
       },
       {
         id: "f6",
-        description: "Indira Gandhi International Airport",
-        name: "New Delhi",
+        name: "Chennai",
         country: "India",
+        code: "CHE",
+        description: "Chennai Airport",
         countryCode: "IN",
-        code: "DEL",
-        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
       },
       {
         id: "f7",
@@ -313,7 +367,42 @@ export const suggection_flight = [
         countryCode: "IN",
         code: "AIP",
         icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+      },
+      {
+        id: "f11",
+        name: "Mumbai",
+        country: "India",
+        code: "BOM",
+        description: "Chhatrapati Shivaji International Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+      },
+      {
+        id: "f12",
+        name: "Bangalore",
+        country: "India",
+        code: "BEN",
+        description: "Bangalore Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+      },
+      {
+        id: "f13",
+        name: "Kolkatha",
+        country: "India",
+        code: "KOL",
+        description: "Kolkatha International Airport",
+        countryCode: "IN",
+        icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
       }
     ]
   }
+];
+
+// // TravellerClassList //
+
+export const TravellerData = [
+  "Economy/Premium Economy",
+  "Premium Economy",
+  "Business",
 ];

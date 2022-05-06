@@ -26,10 +26,9 @@ const DatePickerComponent = (props) => {
     dispatch(
       changeDate({
         departure: data.startDate,
-        return: data.endDate,
+        return: tripType!=="ONEWAY"?data.endDate:null,
       })
     );
-
     if(data.endDate){
       dispatch(changeTrip("ROUND TRIP"));
     }

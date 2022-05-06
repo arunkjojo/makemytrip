@@ -9,14 +9,14 @@ export const flightSlice = createSlice({
         from: {
           id: "r2",
           name: "Mumbai",
-          contry: "India",
+          country: "India",
           code: "BOM",
           description: "Chhatrapati Shivaji International Airport",
         },
         to: {
           id: "r1",
           name: "Delhi",
-          contry: "India",
+          country: "India",
           code: "DEL",
           description: "Delhi Airport",
         },
@@ -26,14 +26,14 @@ export const flightSlice = createSlice({
         from: {
           id: "r1",
           name: "Delhi",
-          contry: "India",
+          country: "India",
           code: "DEL",
           description: "Delhi Airport",
         },
         to: {
           id: "",
           name: "",
-          contry: "",
+          country: "",
           code: "",
           description: "",
         },
@@ -113,7 +113,7 @@ export const flightSlice = createSlice({
         to: {
           id: "",
           name: "",
-          contry: "",
+          country: "",
           code: "",
           description: "",
         },

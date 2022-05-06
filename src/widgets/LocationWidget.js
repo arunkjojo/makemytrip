@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import LocationList from "./LocationWidget/LocationList";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  changeFromLocation,
-  changeToLocation,
-} from "../redux/locationSlice";
+import { changeFromLocation, changeToLocation } from "../redux/locationSlice";
 import {
   WidgetDiv,
   WidgetLabel,
@@ -15,12 +12,8 @@ import {
   ErrorIcon,
   ErrorMessage
 } from "../customStyle";
-import { locationData } from "../DB";
 import useComponentVisible from "../helper/useComponentVisible";
-
-import {
-  changeLocations
-} from "../redux/flightSlice";
+import { changeLocations } from "../redux/flightSlice";
 
 const LocationWidget = (props) => {
   const locations = useSelector(state => state.location);
@@ -33,14 +26,17 @@ const LocationWidget = (props) => {
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
+    console.log("selected", data);
     setVisible(false);
     if (props.primaryKey === "from") {
       let from = {
         id: data.id,
         name: data.name,
-        contry: data.contry,
+        country: data.country,
         description: data.description,
         code: data.code,
+        countryCode: data.countryCode,
+        icon: data.icon,
       };
       dispatch(changeFromLocation(from));
 
@@ -48,18 +44,22 @@ const LocationWidget = (props) => {
       let to = {
         id: data.id,
         name: data.name,
-        contry: data.contry,
+        country: data.country,
         description: data.description,
         code: data.code,
+        countryCode: data.countryCode,
+        icon: data.icon,
       };
       dispatch(changeToLocation(to));
     } else{
       let intermediate = {
         id: data.id,
         name: data.name,
-        contry: data.contry,
+        country: data.country,
         description: data.description,
         code: data.code,
+        countryCode: data.countryCode,
+        icon: data.icon,
       };
 
       dispatch(changeLocations({
@@ -73,6 +73,7 @@ const LocationWidget = (props) => {
 
     props.onLocationChange(data);
   };
+
   return (
     <WidgetDiv 
       widthValue={props.widthValue}
@@ -108,7 +109,7 @@ const LocationWidget = (props) => {
       {visible && isComponentVisible && (
         <LocationDropDiv>
           <LocationList
-            data={locationData}
+            keyValue={props.primaryKey}
             locationFixed={locationFixHandler}
           />
         </LocationDropDiv>

@@ -902,8 +902,11 @@ export const PagesMainDiv = styledComponents.div`
   padding: 60px 20px 0;
 `;
 
-// input.attrs({ type: 'text', placeholder:'From', ariaAutocomplete:'list', })
-export const SearchInput = styledComponents.div` 
+export const SearchInput = styledComponents.input.attrs({ 
+  type: 'text', 
+  placeholder:'From', 
+  ariaAutocomplete:'list', 
+})`
   background: #ffffff;
   box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
   padding: 11px 10px 11px 30px;

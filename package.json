@@ -1,6 +1,6 @@
 {
   "name": "make-my-trip",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "private": true,
   "dependencies": {
     "@datepicker-react/styled": "^2.8.4",
@@ -8,7 +8,9 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
     "firebase": "^9.6.11",
+    "lodash.debounce": "^4.0.8",
     "moment": "^2.29.3",
     "react": "^18.0.0",
     "react-autosuggest": "^10.1.0",

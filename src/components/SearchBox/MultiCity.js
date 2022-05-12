@@ -12,8 +12,6 @@ const MultiCity = (props) => {
     const tripData = useSelector(state => state.flight.trip);
     
     function locationChangeHandler(type, location, index){
-        console.log(type, location, index);
-
         dispatch(changeLocations({
             primaryIndex: index,
             to: location
@@ -37,7 +35,7 @@ const MultiCity = (props) => {
                 primaryKey="from"
                 id={tripData[0].from.id}
                 name={tripData[0].from.name}
-                contry={tripData[0].from.contry}
+                country={tripData[0].from.country}
                 description={tripData[0].from.description}
                 code={tripData[0].from.code}
                 onLocationChange={(data)=>locationChangeHandler('from', data, 0)}
@@ -52,7 +50,7 @@ const MultiCity = (props) => {
                 countNumber={i}
                 id={tripData[i].from.id}
                 name={tripData[i].from.name}
-                contry={tripData[i].from.contry}
+                country={tripData[i].from.country}
                 description={tripData[i].from.description}
                 code={tripData[i].from.code}
                 onLocationChange={(data)=>locationChangeHandler('from', data, i)}
@@ -68,7 +66,7 @@ const MultiCity = (props) => {
                 countNumber={i}
                 id={tripData[i].to.id}
                 name={tripData[i].to.name}
-                contry={tripData[i].to.contry}
+                country={tripData[i].to.country}
                 description={tripData[i].to.description}
                 code={tripData[i].to.code}
                 onLocationChange={(data)=>locationChangeHandler('to', data, i)}
@@ -82,7 +80,7 @@ const MultiCity = (props) => {
                 primaryKey="to"
                 id={tripData[i].to.id}
                 name={tripData[i].to.name}
-                contry={tripData[i].to.contry}
+                country={tripData[i].to.country}
                 description={tripData[i].to.description}
                 code={tripData[i].to.code}
                 onLocationChange={(data)=>locationChangeHandler('to', data, i)}

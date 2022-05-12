@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   LocationDiv,
   Label,
@@ -9,44 +9,81 @@ import {
   LocationName,
   LocationLabel,
   LocationSName,
+  LocationListDiv,
   SearchInput,
-  LocationListDiv
 } from "../../customStyle";
+import { useSelector, useDispatch } from "react-redux";
+import debounce from "lodash.debounce";
+import { getApiSuggestions } from "../../API/";
+import { updateSuggestion, updatePopularCity } from "../../redux/serviceLocation";
 
 const LocationList = (props) => {
-  const [searchValue, setSearchValue] = useState('');
+  const locationData = useSelector((state) => state.location);
+  const dispatch = useDispatch();
+
+  const [searchValue, setSearchValue] = useState("");
+  let suggestionFilterdData = [];
+
+  const debouncedSave = useCallback(
+    debounce((newValue) => getApiSuggestions(newValue), 1000),
+    []
+  );
+
+  const updateValue = (value) => {
+    setSearchValue(value);
+    debouncedSave(value);
+  };
+
+  useEffect(() => {
+    dispatch(updatePopularCity());
+    dispatch(updateSuggestion());
+  }, []);
+
+  if (searchValue.length > 2 && locationData.suggestions !== []) {
+    suggestionFilterdData = locationData.suggestions.filter((data) =>
+      data.name.toLowerCase().includes(searchValue)
+    );
+  }
+
+  const currentRecentLocation = props.keyValue === "from"?locationData.recent.from:locationData.recent.to;
 
   return (
     <LocationDiv>
-      <SearchInput value={searchValue} onChange={(e)=>setSearchValue(e.target.value)}/>
+      <SearchInput
+        value={searchValue}
+        onChange={(event) => {
+          event.preventDefault();
+          updateValue(event.target.value);
+        }}
+      />
       <LocationListDiv>
-        {searchValue!=='' ?( 
-          <div>
-            <Label>SUGGESTIONS</Label>
-          </div>
-        ): (
-          props.data.map((v, i) => (
-            <div key={i}>
-              <Label>{v.itemName}</Label>
+        {searchValue !== "" ? (
+          searchValue.length < 3 ? (
+            <Label>Enter atleast 3 charactors</Label>
+          ) : (
+            <div key="suggected">
+              <Label>SUGGESTIONS</Label>
               <LocationUl>
-                {v.data.map((data, index) => (
+                {suggestionFilterdData.map((data, index) => (
                   <LocationLi key={index}>
                     <LocationData
                       key={data.id}
-                      onClick={(e)=> {
+                      onClick={(e) => {
                         e.stopPropagation();
                         props.locationFixed({
-                          id:data.id,
+                          id: data.id,
                           name: data.name,
-                          contry:data.contry,
+                          country: data.country,
                           description: data.description,
                           code: data.code,
-                        })
+                          countryCode: data.countryCode,
+                          icon: data.icon,
+                        });
                       }}
                     >
                       <LocationNameLabel>
                         <LocationName>
-                          {data.name},{data.contry}{" "}
+                          {data.name},{data.country}{" "}
                         </LocationName>
                         <LocationLabel>{data.description} </LocationLabel>
                       </LocationNameLabel>
@@ -56,10 +93,73 @@ const LocationList = (props) => {
                 ))}
               </LocationUl>
             </div>
-          ))
+          )
+        ) : (
+          <div key="no-suggest">
+            <Label>RECENT SEARCH</Label>
+            <LocationUl>
+              {currentRecentLocation.map((data, index) => (
+                <LocationLi key={index}>
+                  <LocationData
+                    key={data.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      props.locationFixed({
+                        id: data.id,
+                        name: data.name,
+                        country: data.country,
+                        description: data.description,
+                        code: data.code,
+                        countryCode: data.countryCode,
+                        icon: data.icon,
+                      });
+                    }}
+                  >
+                    <LocationNameLabel>
+                      <LocationName>
+                        {data.name},{data.country}{" "}
+                      </LocationName>
+                      <LocationLabel>{data.description} </LocationLabel>
+                    </LocationNameLabel>
+                    <LocationSName>{data.code} </LocationSName>
+                  </LocationData>
+                </LocationLi>
+              ))}
+            </LocationUl>
+
+            <Label>POPULAR CITY</Label>
+            <LocationUl>
+              {locationData.popular.map((data, index) => (
+                <LocationLi key={index}>
+                  <LocationData
+                    key={data.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      props.locationFixed({
+                        id: data.id,
+                        name: data.name,
+                        country: data.country,
+                        countryCode: data.countryCode,
+                        description: data.description,
+                        code: data.code,
+                        icon: data.icon,
+                      });
+                    }}
+                  >
+                    <LocationNameLabel>
+                      <LocationName>
+                        {data.name},{data.country}{" "}
+                      </LocationName>
+                      <LocationLabel>{data.description} </LocationLabel>
+                    </LocationNameLabel>
+                    <LocationSName>{data.code} </LocationSName>
+                  </LocationData>
+                </LocationLi>
+              ))}
+            </LocationUl>
+          </div>
         )}
       </LocationListDiv>
-      
     </LocationDiv>
   );
 };

@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Datepicker, START_DATE } from "@datepicker-react/styled";
 // import { DateWrapper, DatePickerHeader, DatePickerMain, CalHeading, DateFeild, DatePara, CalSpan, SelectDateField, DashedSpan, DayWrapper, DayHeader, PreMonth, NxtMonth, MonthPicker, MonthList, DayPickerCaption, DayPickerWeekdays, WeekDays, Day, DayPickerBody, DayPickerWeek} from "../../customStyle";
-import { useDispatch } from "react-redux";
-import { changeTrip, changeDate } from "../../redux/flightSlice";
+import { useDispatch, useSelector } from "react-redux";
+// import { changeTrip, changeDate } from "../../redux/flightSlice";
+import { changeTrip } from "../../redux/tripSlice";
+import { changeDate } from "../../redux/dateSlice";
 
 const DatePickerComponent = (props) => {
+  const tripType = useSelector((state) => state.tripType.tripType);
   const [state, setState] = useState({
-    startDate: null ,// dateValue.departure.full_date,
+    startDate: null, // dateValue.departure.full_date,
     endDate: null, //dateValue.returns.full_date,
     focusedInput: START_DATE,
   });
   const dispatch = useDispatch();
   function handleDatesChange(data) {
     if (!data.focusedInput) {
-      setState({ 
-        ...data, 
-        focusedInput: START_DATE 
+      setState({
+        ...data,
+        focusedInput: START_DATE,
       });
     } else {
       setState(data);
@@ -23,16 +26,10 @@ const DatePickerComponent = (props) => {
     dispatch(
       changeDate({
         departure: data.startDate,
-        returns: data.endDate,
+        return: tripType !== "ONEWAY" ? data.endDate : null,
       })
     );
-
-    if(data.endDate){
-      dispatch(changeTrip("ROUND TRIP"));
-    }
-    // props.dateChangeHandler(data);
   }
-
   return (
     <>
       <Datepicker
@@ -40,11 +37,13 @@ const DatePickerComponent = (props) => {
         showResetDates={false}
         onDatesChange={handleDatesChange}
         minBookingDate={new Date()}
-        startDate= {state.startDate} // Date or null
-        endDate= {state.endDate} // Date or null
-        focusedInput={state.focusedInput} // START_DATE, END_DATE or null
+        startDate={state.startDate}
+        endDate={state.endDate}
+        focusedInput={tripType==="ONEWAY"?START_DATE:state.focusedInput} // tripType==="ONEWAY"?START_DATE:
         numberOfMonths={2}
         firstDayOfWeek={0}
+        minBookingDays={1}
+        unavailableDates={[]}
       />
       {/* <DateWrapper>
         <DatePickerHeader>

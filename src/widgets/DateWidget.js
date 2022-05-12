@@ -27,6 +27,7 @@ const DateWidget = (props) => {
         event.stopPropagation();
         setVisible(true);
         setIsComponentVisible(true);
+        props.onClick();
       }}
     >
       <WidgetLabel htmlFor={props.label}>
@@ -38,8 +39,7 @@ const DateWidget = (props) => {
             {props.primaryKey === "to"? <CloseIcon onClick={(e)=>{
               e.stopPropagation();
               dispatch(changeTrip({
-                id:1,
-                value:"ONEWAY"
+                tripType:"ONEWAY"
               }));
             }}/>:null}
             <WidgetValue>
@@ -62,15 +62,13 @@ const DateWidget = (props) => {
           </>
         )}
       </WidgetLabel>
-      {visible && isComponentVisible && (
+      {/* {visible && isComponentVisible && (
         <DateWidgetDrop>
           <DatePicker
-            // dateChangeHandler={dateHandler}
             currentDate={props.date}
-            singleDate={props.singleDate}
           />
         </DateWidgetDrop>
-      )}
+      )} */}
     </WidgetDiv>
   );
 };

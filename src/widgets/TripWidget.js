@@ -3,23 +3,22 @@ import { FareTypeDiv, FareItems, RedioItem, LabelItem } from "../customStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { changeTrip } from "../redux/tripSlice";
 const TripWidget = (props) => {
-  const tripData = useSelector(state => state.tripType);
+  const tripData = useSelector(state => state.tripType.tripType);
   const dispatch = useDispatch();
-  const tripChange = (v) => {
+  const tripChange = (value) => {
     dispatch(changeTrip({
-      id:v.id,
-      value: v.value
+      tripType:value
     }));
   }
   return (
     <FareTypeDiv>
-      {props.title.map((v, i) => (
-        <FareItems key={v.id} active={v.id === tripData.id} onClick={(e)=>{
+      {props.title.map((value, i) => (
+        <FareItems key={i} active={value === tripData} onClick={(e)=>{
           e.preventDefault();
-          tripChange(v);
+          tripChange(value);
         }}>
-          <RedioItem key={i} checked={v.id === tripData.id} />
-          <LabelItem htmlFor={i}>{v.value}</LabelItem>
+          <RedioItem key={i} checked={value === tripData} />
+          <LabelItem htmlFor={i}>{value}</LabelItem>
         </FareItems>
       ))}
     </FareTypeDiv>

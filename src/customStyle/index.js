@@ -11,6 +11,7 @@ export const AppDiv = styledComponents.div `
   background-color: #fff;
   color: #000;
   font-family: "Lato";
+  margin-bottom: 40px !important;
 `;
 
 // // App>NavIcon //
@@ -423,19 +424,7 @@ export const FareWidgetHeading = styledComponents.span`
   margin-top: -15px;
 `;
 export const FareWidgetItems = styledComponents.li`
-  
-  // :before{
-  //   content: "";
-  //   width: 12px;
-  //   height: 12px;
-  //   border-radius: 100%;
-  //   border: solid 1px #9b9b9b;
-  //   display: flex;
-  //   flex-shrink: 0;
-  //   position: relative;
-  //   left: 8px;
-  // }
-
+  position: relative;
   padding: 0px 6px 8px 0px;
   cursor: pointer;
   font-size: 12px;
@@ -454,51 +443,46 @@ export const FareWidgetItems = styledComponents.li`
     `
     border-radius: 4px;
     background: #eaf5ff;
-    // :before{
-    //   background: #008cff;
-    //   border-color: #008cff;
-    // }
-    // :after{
-    //   display: inline-block;
-    // }
   `}
 
-  // :after{
-  //   display: inline-block;
-  //   content: "";
-  //   -webkit-transform: rotate(45deg);
-  //   -ms-transform: rotate(45deg);
-  //   transform: rotate(45deg);
-  //   height: 10px;
-  //   width: 5px;
-  //   border-bottom: 1px solid #fff;
-  //   border-right: 1px solid #fff;
-  //   position: absolute;
-  //   left: 93px;
-  //   top: 258px;
-  // }
-  .labelItem {
-    list-style: none;
-    margin-left: 10px;
-    padding: 0;
-  }
+  ${({ disAble }) =>
+    disAble &&
+    `
+    color: #c2c2c2 !important;
+    opacity: 0.6;
+    pointer-events: none;
+    text-decoration-color: #c2c2c2 !important;
+  `}
   .specialFareTooltip{
-    position: relative;
-    min-width: 200px;
-    top: 100px;
-    left: -75px;
-
-    padding: 6px;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 241px;
+    padding: 10px;
     text-transform: none;
+    -webkit-box-shadow: 0 2px 7px 0 rgb(0 0 0 / 30%);
     box-shadow: 0 2px 7px 0 rgb(0 0 0 / 30%);
     z-index: 3;
     background-color: #249995;
     display: none;
     border-radius: 4px;
     font-weight: normal;
-    color: #fff;
-    line-height: 14px !important;
+    color: #ffffff;
+  }
 
+  .specialFareTooltip::after {
+    bottom: 100%;
+    left: 40px;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(36, 153, 149, 0);
+    border-bottom-color: #249995;
+    border-width: 10px;
+    margin-left: -10px;
   }
   .label {
     font-weight: 700;
@@ -510,7 +494,7 @@ export const FareWidgetItems = styledComponents.li`
     font-size: 11px;
     line-height: 11px;
   }
-  :hover{
+  :hover {
     .specialFareTooltip{
       display: block;
     }
@@ -519,8 +503,12 @@ export const FareWidgetItems = styledComponents.li`
 
 export const LabelItem = styledComponents.div`
   >span{
-    color: red
+    color: red;
+    margin-left: 10px;
   }
+  list-style: none;
+    margin-left: 10px;
+    padding: 0;
 `;
 
 // // DateWidget //
@@ -906,7 +894,7 @@ export const DayPickerWeek = styledComponents.div`
 // // OtherPages //
 
 export const PagesMainDiv = styledComponents.div`
-  width: 1200px;
+  // width: 1200px;
   position: relative;
   z-index: 10;
   border-radius: 8px;
@@ -915,12 +903,10 @@ export const PagesMainDiv = styledComponents.div`
   padding: 60px 20px 0;
 `;
 
-export const SearchInput = styledComponents.input.attrs({
-  type: 'text',
-  autoCompletion:false,
-  placeholder:'From',
-  ariaAutocomplete:'list',
-  AutoFocus:true,
+export const SearchInput = styledComponents.input.attrs({ 
+  type: 'text', 
+  placeholder:'From', 
+  ariaAutocomplete:'list', 
 })`
   background: #ffffff;
   box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
@@ -932,8 +918,8 @@ export const SearchInput = styledComponents.input.attrs({
   color: #000000;
   font-weight: 700;
   position:relative;
+` 
 
-`
 export const AvailableDiv = styledComponents.div`
   position: relative;
   top: 3px;

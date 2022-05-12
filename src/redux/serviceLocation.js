@@ -8,10 +8,8 @@ export const updateSuggestion = createAsyncThunk(
   async (thunkAPI) => {
     const res = axios.get(URL)
     .then((result)=>{
-      // console.log("updateSuggestions",result.data[1]);
       return result.data[1];
     }).catch((err)=>{
-      // console.log(err); 
       return [];
     })
     return res
@@ -23,10 +21,8 @@ export const updatePopularCity = createAsyncThunk(
   async (thunkAPI) => {
     const res=axios.get(URL)
     .then((result)=>{
-      // console.log("updatePopularCity",res.data[0]);
       return result.data[0];
     }).catch((err)=>{
-      // console.log(err);
       return [];
     });
     return res;

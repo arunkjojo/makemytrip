@@ -26,7 +26,6 @@ const LocationWidget = (props) => {
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
-    console.log("selected", data);
     setVisible(false);
     if (props.primaryKey === "from") {
       let from = {

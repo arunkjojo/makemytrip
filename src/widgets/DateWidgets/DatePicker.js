@@ -7,18 +7,18 @@ import { changeTrip } from "../../redux/tripSlice";
 import { changeDate } from "../../redux/dateSlice";
 
 const DatePickerComponent = (props) => {
-  const tripType = useSelector(state => state.tripType.tripType);
+  const tripType = useSelector((state) => state.tripType.tripType);
   const [state, setState] = useState({
-    startDate: null ,// dateValue.departure.full_date,
+    startDate: null, // dateValue.departure.full_date,
     endDate: null, //dateValue.returns.full_date,
     focusedInput: START_DATE,
   });
   const dispatch = useDispatch();
   function handleDatesChange(data) {
     if (!data.focusedInput) {
-      setState({ 
-        ...data, 
-        focusedInput: START_DATE 
+      setState({
+        ...data,
+        focusedInput: START_DATE,
       });
     } else {
       setState(data);
@@ -26,15 +26,10 @@ const DatePickerComponent = (props) => {
     dispatch(
       changeDate({
         departure: data.startDate,
-        return: tripType!=="ONEWAY"?data.endDate:null,
+        return: tripType !== "ONEWAY" ? data.endDate : null,
       })
     );
-    if(data.endDate){
-      dispatch(changeTrip("ROUND TRIP"));
-    }
-    // props.dateChangeHandler(data);
   }
-
   return (
     <>
       <Datepicker
@@ -42,11 +37,13 @@ const DatePickerComponent = (props) => {
         showResetDates={false}
         onDatesChange={handleDatesChange}
         minBookingDate={new Date()}
-        startDate= {state.startDate} // Date or null
-        endDate= {state.endDate} // Date or null
-        focusedInput={tripType==="ONEWAY"?START_DATE:state.focusedInput} // START_DATE, END_DATE or null
+        startDate={state.startDate}
+        endDate={state.endDate}
+        focusedInput={tripType==="ONEWAY"?START_DATE:state.focusedInput} // tripType==="ONEWAY"?START_DATE:
         numberOfMonths={2}
         firstDayOfWeek={0}
+        minBookingDays={1}
+        unavailableDates={[]}
       />
       {/* <DateWrapper>
         <DatePickerHeader>

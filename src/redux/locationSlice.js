@@ -90,55 +90,28 @@ export const locationSlice = createSlice({
     },
 
     addRecentList: (state) => {
-      state.recent.to.push(state.to)
-      state.recent.from.push(state.from)
+      let to_included = state.recent.to.filter( v => v.id === state.to.id)
+      if(to_included.length === 0) state.recent.to.push(state.to)
+
+      let from_included = state.recent.from.filter( v => v.id === state.from.id)
+      if(from_included.length === 0) state.recent.from.push(state.from)
     },
-    removeRecentFirst: (state, action) => {
-      console.log(action.payload);
-      switch (action.payload.type) {
-        case 'TO_FIRST':
-          let recent_to = [
-            ...state.recent.to,
-            state.recent.to.slice(1,state.recent.to.length)
-          ];
-          return {
-            ...state,
-            recent:{
-              ...state.recent,
-              to: [
-                ...recent_to
-              ]
-            }
-          } 
-        case 'FROM_FIRST' :
-          let recent_from = [
-            ...state.recent.from,
-            state.recent.from.slice(1,state.recent.from.length)
-          ];
-          return {
-            ...state,
-            recent:{
-              ...state.recent,
-              from: [
-                ...recent_from
-              ]
-            }
-          }
-        default:
-          return state;
-      }
+    removeRecentFirst: (state) => {
+      if(state.recent.from.length > 3)
+        state.recent.from.shift();
+      if(state.recent.to.length > 3)
+        state.recent.to.shift();
+      
     }
   },
   extraReducers: {
     [updateSuggestion.fulfilled]: (state, acion) => {
-      // console.log(acion.payload.data);
       return {
         ...state,
         suggestions: acion.payload.data
       }
     },
     [updatePopularCity.fulfilled]: (state, acion) => {
-      // console.log(acion.payload.data);
       return {
         ...state,
         popular: acion.payload.data

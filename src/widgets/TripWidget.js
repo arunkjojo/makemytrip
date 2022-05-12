@@ -6,7 +6,9 @@ const TripWidget = (props) => {
   const tripData = useSelector(state => state.tripType.tripType);
   const dispatch = useDispatch();
   const tripChange = (value) => {
-    dispatch(changeTrip(value));
+    dispatch(changeTrip({
+      tripType:value
+    }));
   }
   return (
     <FareTypeDiv>

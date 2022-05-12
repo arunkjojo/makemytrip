@@ -11,6 +11,7 @@ export const AppDiv = styledComponents.div `
   background-color: #fff;
   color: #000;
   font-family: "Lato";
+  margin-bottom: 40px !important;
 `;
 
 // // App>NavIcon //
@@ -893,7 +894,7 @@ export const DayPickerWeek = styledComponents.div`
 // // OtherPages //
 
 export const PagesMainDiv = styledComponents.div`
-  width: 1200px;
+  // width: 1200px;
   position: relative;
   z-index: 10;
   border-radius: 8px;

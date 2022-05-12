@@ -8,7 +8,7 @@ import {
   LabelItem,
 } from "../customStyle";
 import { useSelector, useDispatch } from "react-redux";
-import { changeTrip } from "../redux/tripSlice";
+import { changeTrip, changeFare } from "../redux/tripSlice";
 const FareWidget = (props) => {
   const [fareDataId, setFareDataId] = useState(1);
   const tripData = useSelector(state => state.tripType.tripType);
@@ -16,15 +16,22 @@ const FareWidget = (props) => {
   const fareChanger = (v) => {
     setFareDataId(v.id)
     if(v.id === 5 ) {
-      console.log(v);
-      dispatch(changeTrip("ONEWAY"));
+      dispatch(changeTrip({
+        tripType:"ONEWAY"
+      }));
     }
+    dispatch(changeFare({
+      fareType:v.name
+    }));
   }
   useEffect(()=>{
     if(tripData !== "ONEWAY" && fareDataId === 5){
-      setFareDataId(1)
+      setFareDataId(1);
+      dispatch(changeFare({
+        fareType:"Regular"
+      }));
     }
-  },[tripData, fareDataId, setFareDataId])
+  },[tripData, fareDataId, dispatch, setFareDataId])
   return (
     <FareWidgetDiv>
       <FareWidgetHeading>Select A Fare Type:</FareWidgetHeading>

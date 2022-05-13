@@ -1,6 +1,6 @@
 {
   "name": "make-my-trip",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "dependencies": {
     "@datepicker-react/styled": "^2.8.4",

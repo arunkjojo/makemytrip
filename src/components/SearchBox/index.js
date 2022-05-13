@@ -31,6 +31,7 @@ const SearchBox = () => {
   }
 
   const returnDateHandler = ()=> {
+
     setDateActive({
       deparure:false,
       returns:true
@@ -43,6 +44,7 @@ const SearchBox = () => {
     setToVisibility(false);
   }
   const depatureDateHandler = ()=> {
+
     setDateActive({
       deparure:true,
       returns:false
@@ -65,22 +67,25 @@ const SearchBox = () => {
     }
   }
 
-  const [state, setState] = useState({
-    startDate: null,
-    endDate: null,
-    focusedInput: START_DATE,
-  });
+  // const [state, setState] = useState({
+  //   startDate: null,
+  //   endDate: null,
+  //   focusedInput: START_DATE,
+  // });
+
   function dateHandler(data) {
-    console.log("date", data);
-    if (!data.focusedInput) {
-      setState({
-        ...data,
-        focusedInput: START_DATE,
-      });
-    } else {
-      setState(data);
-    }
+    
+    // if (!data.focusedInput) {
+    //   setState({
+    //     ...data,
+    //     focusedInput: START_DATE,
+    //   });
+    // } else {
+    //   setState(data);
+    // }
+
     if(data.startDate !== null && data.endDate !== null){
+      // console.log("date", data);
       setDateVisibility(false);
       dispatch(
         changeDate({
@@ -89,6 +94,9 @@ const SearchBox = () => {
         })
       );
     }
+  }
+  function visibleHandler(data) {
+    setDateVisibility(data);
   }
   return (
     tripType=== 'MULTI CITY' 
@@ -149,7 +157,7 @@ const SearchBox = () => {
         />
 
         {dateVisibility && (
-          <DateWidgetBox trip={tripType} state={state} onDateChange={dateHandler} />
+          <DateWidgetBox trip={tripType} state={dateValue} visible={(data) => visibleHandler(data)} onDateChange={dateHandler} />
         )}
         <TravellerWidget widthValue="260px"/>
       </SearchBoxDiv>

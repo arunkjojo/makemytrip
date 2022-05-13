@@ -20,13 +20,15 @@ const DatePickerComponent = (props) => {
     } else {
       setState(data);
     }
-    dispatch(
-      changeDate({
-        departure: data.startDate,
-        return: data.endDate,
-      })
-    );
-    props.datehandle(state);
+    if(data.startDate !== null && data.endDate !== null){
+      dispatch(
+        changeDate({
+          departure: data.startDate,
+          return: data.endDate,
+        })
+      );
+      props.onChanged(data);
+    }
   }
   return (
     <Datepicker

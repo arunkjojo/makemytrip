@@ -19,6 +19,12 @@ const DateWidget = (props) => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
 
+  const dateChangeHandler = () => {
+    setVisible(false);
+    setIsComponentVisible(false);
+    console.log(isComponentVisible);
+  }
+
   return (
     <WidgetDiv
       widthValue={props.widthValue}
@@ -64,9 +70,7 @@ const DateWidget = (props) => {
       </WidgetLabel>
       {/* {visible && isComponentVisible && (
         <DateWidgetDrop>
-          <DatePicker
-            currentDate={data=> props.onDateChange(data)}
-          />
+          <DatePicker onChanged={(date)=> dateChangeHandler(date) }/>
         </DateWidgetDrop>
       )} */}
     </WidgetDiv>

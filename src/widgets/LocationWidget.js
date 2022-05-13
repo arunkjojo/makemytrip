@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocationList from "./LocationWidget/LocationList";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFromLocation, changeToLocation } from "../redux/locationSlice";
@@ -72,6 +72,13 @@ const LocationWidget = (props) => {
 
     props.onLocationChange(data);
   };
+
+  useEffect(()=>{
+    if(props.expand){
+      setVisible(true);
+      setIsComponentVisible(true);
+    }
+  },[props,setIsComponentVisible]);
 
   return (
     <WidgetDiv 

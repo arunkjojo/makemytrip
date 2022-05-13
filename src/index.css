@@ -1,6 +1,7 @@
 body {
   margin: 0;
   height: calc(100%);
+  width: calc(100%);
   background: hsl(214deg 93% 22%);
   --font-family: "Lato";
   -webkit-font-smoothing: antialiased;

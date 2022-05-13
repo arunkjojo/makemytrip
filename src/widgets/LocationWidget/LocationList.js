@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   LocationDiv,
   Label,
@@ -12,14 +12,12 @@ import {
   LocationListDiv,
   SearchInput,
 } from "../../customStyle";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import { getApiSuggestions } from "../../API/";
-import { updateSuggestion, updatePopularCity } from "../../redux/serviceLocation";
 
 const LocationList = (props) => {
   const locationData = useSelector((state) => state.location);
-  const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState("");
   let suggestionFilterdData = [];
@@ -33,12 +31,6 @@ const LocationList = (props) => {
     setSearchValue(value);
     debouncedSave(value);
   };
-
-  useEffect(() => {
-    dispatch(updatePopularCity());
-    dispatch(updateSuggestion());
-  }, []);
-
   if (searchValue.length > 2 && locationData.suggestions !== []) {
     suggestionFilterdData = locationData.suggestions.filter((data) =>
       data.name.toLowerCase().includes(searchValue)

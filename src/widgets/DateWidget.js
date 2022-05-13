@@ -31,7 +31,7 @@ const DateWidget = (props) => {
       }}
     >
       <WidgetLabel htmlFor={props.label}>
-        <WidgetSpan dropDown active={isComponentVisible} >{props.label}</WidgetSpan>
+        <WidgetSpan dropDown active={props.expand} >{props.label}</WidgetSpan>
         {props.disAble ? (
           <p>Tap to add a return date for bigger discounts</p>
         ) : (
@@ -65,7 +65,7 @@ const DateWidget = (props) => {
       {/* {visible && isComponentVisible && (
         <DateWidgetDrop>
           <DatePicker
-            currentDate={props.date}
+            currentDate={data=> props.onDateChange(data)}
           />
         </DateWidgetDrop>
       )} */}

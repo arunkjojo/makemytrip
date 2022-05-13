@@ -1040,3 +1040,24 @@ export const RemoveCity = styledComponents.div`
   align-items: center;
   justify-content: center;
 `
+
+export const ErrorPage = styledComponents.div`
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%);
+  background-color: #fff;
+  position: relative;
+
+  .error-icon {
+    width: 200px;
+    height: 200px;
+    background-position: 50%;
+    background-size: contain;
+    display: inline-block;
+    background-repeat: no-repeat;
+
+    background-image: url(https://imgak.mmtcdn.com/flights/assets/media/dt/listing/sannaata.png);
+  }
+`

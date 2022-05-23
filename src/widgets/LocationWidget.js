@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, } from "react";
 import LocationList from "./LocationWidget/LocationList";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFromLocation, changeToLocation } from "../redux/locationSlice";
@@ -10,7 +10,7 @@ import {
   LocationDropDiv,
   ErrorSection,
   ErrorIcon,
-  ErrorMessage
+  ErrorMessage,
 } from "../customStyle";
 import useComponentVisible from "../helper/useComponentVisible";
 import { changeLocations } from "../redux/flightSlice";
@@ -22,11 +22,11 @@ const LocationWidget = (props) => {
     isComponentVisible,
     setIsComponentVisible
   } = useComponentVisible(false);
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
-    setVisible(false);
+    // setVisible(false);
     if (props.primaryKey === "from") {
       let from = {
         id: data.id,
@@ -74,29 +74,27 @@ const LocationWidget = (props) => {
   };
 
   useEffect(()=>{
-    if(props.expand){
-      setVisible(true);
-      setIsComponentVisible(true);
-    }
-  },[props,setIsComponentVisible]);
-
+    setIsComponentVisible(props.expand);
+  },[props, setIsComponentVisible]);
+  
+  function showChildComp() {
+    // console.log("showChildComp location");
+    props.onClick();
+  }
   return (
     <WidgetDiv 
       widthValue={props.widthValue}
       ref={ref} 
-      onClick={(e) =>{
-        e.preventDefault();
-        setVisible(true);
-        setIsComponentVisible(true);
-      }}
+      onFocus={showChildComp} 
+      tabIndex={0}
+      style={props.label === 'To'?{marginLeft: "-18px"}:null}
     >
       <WidgetLabel 
         htmlFor={props.label}
       >
         <WidgetSpan active={isComponentVisible}>{props.label}</WidgetSpan>
-        <WidgetValue
-          style={{ fontWeight: 900 }}
-        >
+        
+        <WidgetValue style={{ fontWeight: 900 }} >
           <span className="headTilte">{props.name}</span>
         </WidgetValue>
         <WidgetValue>
@@ -112,7 +110,8 @@ const LocationWidget = (props) => {
           </ErrorSection>
         )}
       </WidgetLabel>
-      {visible && isComponentVisible && (
+      {/* {visible && isComponentVisible && ( */}
+      {props.expand && isComponentVisible && (
         <LocationDropDiv>
           <LocationList
             keyValue={props.primaryKey}

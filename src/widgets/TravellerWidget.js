@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import TravellersClassList from "./TravellerWidget/TravellersClassList";
 import {
@@ -17,25 +17,32 @@ import useComponentVisible from "../helper/useComponentVisible";
 
 const TravellerWidget = (props) => {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   const travellerData = useSelector((state) => state.flight);
   const gbAvailable = 'Group Booking Now Available!';
+
+  useEffect(()=>{
+    setIsComponentVisible(props.expand);
+  },[props, setIsComponentVisible]);
+
+  function showChildComp() {
+    props.onClick()
+  }
 
   return (
     <WidgetDiv
       widthValue={props.widthValue}
       borderRightColor="#fff"
       ref={ref}
-      onClick={(event)=>{
-        event.preventDefault();
-        setVisible(true);
-        setIsComponentVisible(true);
-      }}
+
+      onFocus={showChildComp} 
+      tabIndex={0} 
     >
       <WidgetLabel>
         <WidgetSpan dropDown active={isComponentVisible}>Travellers & Class</WidgetSpan>
-        <WidgetValue>
+        
+        <WidgetValue >
           <span className="headTilte">{travellerData.count.total} </span>
           <span className="subTiitle">Travellers</span>
         </WidgetValue>
@@ -54,11 +61,13 @@ const TravellerWidget = (props) => {
         )}
       </WidgetLabel>
       
-      {visible && isComponentVisible && (
+      {/* {visible && isComponentVisible && ( */}
+      {props.expand && isComponentVisible && (
         <TravellerDropDiv>
           <TravellersClassList onApply={(event)=>{
-            event.stopPropagation();
-            setVisible(false);
+            // event.stopPropagation();
+            props.visible();
+            // setVisible(false);
           }}/>
         </TravellerDropDiv>
       )}

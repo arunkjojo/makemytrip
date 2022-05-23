@@ -1,40 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-// import { changeDate } from "../redux/dateSlice";
-import DatePicker from "./DateWidgets/DatePicker";
 import {
   WidgetDiv,
   WidgetLabel,
   WidgetSpan,
   WidgetValue,
-  DateWidgetDrop,
   CloseIcon,
+  ErrorSection,
+  ErrorIcon,
+  ErrorMessage,
 } from "../customStyle";
-import useComponentVisible from "../helper/useComponentVisible";
 import { changeTrip } from "../redux/tripSlice";
 
 const DateWidget = (props) => {
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(true);
-  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
 
-  const dateChangeHandler = () => {
-    setVisible(false);
-    setIsComponentVisible(false);
-    console.log(isComponentVisible);
+  let errorMessage = null;
+  
+  if(props.error > 30) {
+    errorMessage = `You are booking for more than 30 days`;
   }
-
+  function showChildComp() {
+    // console.log("showChildComp date");
+    props.onClick()
+  }
   return (
     <WidgetDiv
       widthValue={props.widthValue}
-      ref={ref}
-      onClick={(event) => {
-        event.stopPropagation();
-        setVisible(true);
-        setIsComponentVisible(true);
-        props.onClick();
-      }}
+      // ref={ref}
+      onClick={showChildComp}
+      onFocus={showChildComp} 
+      tabIndex={props.disAble?'-1':'0'}
     >
       <WidgetLabel htmlFor={props.label}>
         <WidgetSpan dropDown active={props.expand} >{props.label}</WidgetSpan>
@@ -48,7 +44,10 @@ const DateWidget = (props) => {
                 tripType:"ONEWAY"
               }));
             }}/>:null}
-            <WidgetValue>
+
+            {/* <Input onFocus={onFocus} tabIndex={props.disAble?-1:0} onBlur={onBlur} readOnly={true} value={props.date} /> */}
+
+            <WidgetValue >
               <span className="headTilte">
                 {props.date.toLocaleString("en-us", { day: "2-digit" })}
               </span>
@@ -65,6 +64,14 @@ const DateWidget = (props) => {
                 {props.date.toLocaleString("en-us", { weekday: "long" })}
               </span>
             </WidgetValue>
+            {errorMessage !== null && (
+              <ErrorSection>
+                <ErrorIcon />
+                <ErrorMessage>
+                  {errorMessage}
+                </ErrorMessage>
+              </ErrorSection>
+            )}
           </>
         )}
       </WidgetLabel>

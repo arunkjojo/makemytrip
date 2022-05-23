@@ -227,6 +227,7 @@ export const FareItems = styledComponents.li`
 
 export const RedioItem = styledComponents.input.attrs({
   type: "radio",
+  readOnly:true
 })`
   ${({ active }) =>
     active &&
@@ -284,6 +285,7 @@ export const TrendingLi = styledComponents.li`
 
 export const WidgetDiv = styledComponents("div")`
   height: 112px;
+  outline: 0;
   border-right: solid 1px ${p=>p.borderRightColor?p.borderRightColor:'#e7e7e7'};
   :hover {
     background: #fafafa;
@@ -299,7 +301,6 @@ export const WidgetLabel = styledComponents.label`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-
 `;
 
 export const WidgetSpan = styledComponents.span`
@@ -340,6 +341,15 @@ export const WidgetValue = styledComponents.p`
 
   color: #000;
   font-family: Lato;
+  .input{
+    border: 0;
+    outline: 0;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+  }
+
   .headTilte {
     font-weight: 900;
     font-size: 30px;
@@ -353,6 +363,23 @@ export const WidgetValue = styledComponents.p`
     font-size: 14px;
   }
 `;
+
+export const Input = styledComponents.input.attrs({
+
+})`
+  opacity: 0 !important;
+  position: absolute;
+  z-index: -1;
+
+  border: 0;
+  outline: 0;
+  background: none;
+  min-width: 140px;
+  max-height: 36px;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+`
 
 // // TravellerWidget //
 
@@ -535,7 +562,7 @@ export const DateWidgetInput = styledComponents.input.attrs({
 `;
 
 export const DateWidgetDrop = styledComponents.div`
-  width: 625px;
+  // width: 625px;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 1px 6px 0 rgb(0 0 0 / 20%);
@@ -952,7 +979,7 @@ export const ErrorSection = styledComponents.div`
 
   :after {
     bottom: 100%;
-    left: 20%;
+    left: 40%;
     border: solid transparent;
     content: ' ';
     height: 0;

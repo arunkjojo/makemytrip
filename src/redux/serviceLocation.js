@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { CancelToken } from "axios";
+import axios from "axios";
 const URL = 'https://makemytrip-666bbb-default-rtdb.firebaseio.com/locationData.json';
 
 export const updateSuggestion = createAsyncThunk(

@@ -1,19 +1,44 @@
 import { Datepicker, START_DATE } from "@datepicker-react/styled";
 import React, {useEffect, useRef, useState} from "react";
 import { DateWidgetDrop } from "../customStyle";
+import { useSelector } from "react-redux";
 
 const DateWidgetBox = (props) => {
+    const ref=useRef(null);
+    useEffect(() => {
+        function handleClickOutside(event) {
+          if (ref.current && !ref.current.contains(event.target)) {
+            // alert("You clicked outside of me!");
+            props.visible(false);
+          }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
 
+    const date = useSelector(state => state.date);
     const [state, setState] = useState({
         startDate: null,
         endDate: null,
         focusedInput: START_DATE,
-      });
-    const singleDateHandler = (event) => {
-        setState(event);
-        console.log("single",event);
+    });
 
-        props.onDateChange(event);
+    const singleDateHandler = (event) => {
+        // console.log(event.startDate, date.retun)
+        setState({
+            startDate: event.startDate,
+            endDate: date.return,
+            focusedInput: event.focusedInput,
+        });
+        // console.log("single",event);
+
+        // props.onDateChange(event);
+        props.onDateChange({
+            startDate: event.startDate,
+            endDate: date.return,
+        })
     }
     const doubleDateHandler = (event) => {
         if (!event.focusedInput) {
@@ -25,37 +50,24 @@ const DateWidgetBox = (props) => {
             setState(event);
         }
         if(event.startDate !== null && event.endDate !== null){
-            console.log("double",event);
+            // console.log("double",event);
             props.onDateChange(event);
         }
     }
-    useEffect(() => {
-        document.addEventListener("click", handleClickOutside, true);
-        return () => {
-            document.removeEventListener("click", handleClickOutside, true);
-        };
-    });
-    let datepickerWrapperRef = useRef(null);
-    const [visible, setVisible] = useState(true);
-    const handleClickOutside = (event) => {
-        if (datepickerWrapperRef.current && !datepickerWrapperRef.current.contains(event.target)) {
-            setVisible(false);
-            props.visible(false)
-        }
-    };
-
     return (
-        visible &&
-        <DateWidgetDrop ref={datepickerWrapperRef}>
+        <DateWidgetDrop
+        ref={ref}
+        tabIndex={-1}>
             {props.trip === "ONEWAY"?(
                 <Datepicker
+                    tabIndex={-1}
                     exactMinBookingDays={true}
                     showClose={false}
                     showResetDates={false}
                     onDatesChange={(e)=>singleDateHandler(e)}
                     minBookingDate={new Date()}
                     startDate={state.startDate}
-                    endDate={state.endDate}
+                    endDate={null}
                     focusedInput={START_DATE}
                     numberOfMonths={2}
                     firstDayOfWeek={0}
@@ -76,7 +88,7 @@ const DateWidgetBox = (props) => {
                 />
             )}
         </DateWidgetDrop>
-  );
+    );
 };
 
 export default DateWidgetBox;

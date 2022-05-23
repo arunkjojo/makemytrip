@@ -35,10 +35,11 @@ const FareWidget = (props) => {
   return (
     <FareWidgetDiv>
       <FareWidgetHeading>Select A Fare Type:</FareWidgetHeading>
-      <FareWidgetType>
+      <FareWidgetType tabIndex="-1">
         {" "}
         {props.data.map((value, i) => (
           <FareWidgetItems
+            tabIndex="-1"
             active={value.id === fareDataId}
             onClick={(e) => {e.preventDefault(); fareChanger(value)}}
             key={value.id}

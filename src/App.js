@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(updatePopularCity());
     dispatch(updateSuggestion());
-  }, []);
+  }, [dispatch]);
   return (
     online_error!==null 
     ? <ErrorPage><h2>{online_error}</h2></ErrorPage>

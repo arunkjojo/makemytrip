@@ -34,15 +34,15 @@ export const locationSlice = createSlice({
           description: "Indira Gandhi International Airport",
           icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
         },
-        // {
-        //   id: "f11",
-        //   code: "BOM",
-        //   name: "Mumbai",
-        //   country: "India",
-        //   countryCode: "IN",
-        //   description: "Chhatrapati Shivaji International Airport",
-        //   icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
-        // }
+        {
+          id: "f11",
+          code: "BOM",
+          name: "Mumbai",
+          country: "India",
+          countryCode: "IN",
+          description: "Chhatrapati Shivaji International Airport",
+          icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+        }
       ],
       to:[
         {
@@ -54,15 +54,15 @@ export const locationSlice = createSlice({
           description: "Chhatrapati Shivaji International Airport",
           icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
         },
-        // {
-        //   id: "f1",
-        //   code: "DEL",
-        //   name: "New Delhi",
-        //   country: "India",
-        //   countryCode: "IN",
-        //   description: "Indira Gandhi International Airport",
-        //   icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
-        // }
+        {
+          id: "f1",
+          code: "DEL",
+          name: "New Delhi",
+          country: "India",
+          countryCode: "IN",
+          description: "Indira Gandhi International Airport",
+          icon: "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png"
+        }
       ],
     },
     popular: [],

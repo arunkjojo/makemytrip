@@ -8,7 +8,7 @@ const SearchIcons = (props) => {
     <IconDiv>
       <IconUl>
         {props.data.map((v, i) => (
-          <Link to={v.path} style={{textDecoration: "none"}}>
+          <Link key={i} tabIndex="-1" to={v.path} style={{textDecoration: "none"}}>
             <IconLi
               key={v.id}
               onClick={() => setSelected(v.id)}

@@ -14,5 +14,9 @@ export default configureStore({
     date: dateReducer,
     traveller: travellerReducer,
     tripType: tripReducer
-  }
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })

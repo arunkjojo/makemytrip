@@ -1,0 +1,584 @@
+{
+  "Fare": [
+    {
+      "id": 1,
+      "name": "Regular Fares"
+    },
+    {
+      "description": {
+        "label": "Armed Forces Fares",
+        "message": "Applicable for serving and retired personnel of Armed Forces and Paramilitary Forces, their recognised dependants like spouses and children, and war widows. It is mandatory to show a valid ID or dependant card at the airport, without which boarding might be denied."
+      },
+      "id": 2,
+      "name": "Armed Force Fares",
+      "newItem": true
+    },
+    {
+      "description": {
+        "label": "Student Fares",
+        "message": "Only students above 12 years of age are eligible for special fares and/or additional baggage allowances. Carrying valid student ID cards and student visas (where applicable) is mandatory, else the passenger may be denied boarding or asked to pay for extra baggage."
+      },
+      "id": 3,
+      "name": "Student Fares"
+    },
+    {
+      "description": {
+        "label": "Senior Citizen Fares",
+        "message": "Only senior citizens above the age of 60 years can avail this special fare. It is mandatory to produce proof of Date of Birth at the airport, without which prevailing fares will be charged."
+      },
+      "id": 4,
+      "name": "Senior Citizen Fares"
+    },
+    {
+      "description": {
+        "label": "Fly Safer with Double Seat",
+        "message": "Double Seat service is available only for domestic one-way economy flights. You can continue to book at the regular fare or change your search parameter(s) to avail of this service."
+      },
+      "id": 5,
+      "name": "Double Seat Fares"
+    }
+  ],
+  "Icons": [
+    {
+      "activeIcon": "-4px 0px",
+      "icon": "-4px -39px",
+      "id": 1,
+      "name": "Flight",
+      "path": "/flight"
+    },
+    {
+      "activeIcon": "-50px 1px",
+      "icon": "-50px -37px",
+      "id": 2,
+      "name": "Hostels",
+      "path": "/hostel"
+    },
+    {
+      "activeIcon": "-105px -193px",
+      "icon": "-105px -153px",
+      "id": 3,
+      "name": "Home Stay",
+      "path": "/home-stay"
+    },
+    {
+      "activeIcon": "-14px -235px",
+      "icon": "-70px -235px",
+      "id": 4,
+      "name": "Holiday Packages",
+      "path": "/holiday-pack"
+    },
+    {
+      "activeIcon": "-179px 1px",
+      "icon": "-179px -37px",
+      "id": 5,
+      "name": "Train",
+      "path": "/train"
+    },
+    {
+      "activeIcon": "-114px 1px",
+      "icon": "-115px -38px",
+      "id": 6,
+      "name": "Bus",
+      "path": "/bus"
+    },
+    {
+      "activeIcon": "-147px 1px",
+      "icon": "-147px -39px",
+      "id": 7,
+      "name": "Cabs",
+      "path": "/cabs"
+    },
+    {
+      "activeIcon": "-153px -197px",
+      "icon": "-153px -154px",
+      "id": 8,
+      "name": "Visa",
+      "path": "/visa"
+    },
+    {
+      "activeIcon": "-73px -72px",
+      "icon": "-122px -72px",
+      "id": 9,
+      "name": "Charted Flight",
+      "path": "/charted-flight"
+    },
+    {
+      "activeIcon": "-164px -72px",
+      "icon": "-207px -72px",
+      "id": 10,
+      "name": "Activities",
+      "path": "/activities"
+    }
+  ],
+  "SearchTrip": {
+    "-N1luhVOS-EzOQVS5S3y": {
+      "departureDate": "Wed May 11 2022",
+      "dt": "2021-06-24T19:02:00.000Z",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "BOM",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Chhatrapati Shivaji International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f11",
+        "name": "Mumbai"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    },
+    "-N1wJlpfl-BrRWthNHMA": {
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "returnDate": "2022-07-10T18:30:00.000Z",
+      "toLocation": {
+        "code": "BOM",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Chhatrapati Shivaji International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f11",
+        "name": "Mumbai"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ROUND TRIP"
+    },
+    "-N1xEXNHXQgQbisCkmLE": {
+      "departureDate": "Fri May 13 2022",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "BOM",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Chhatrapati Shivaji International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f11",
+        "name": "Mumbai"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    },
+    "-N2Gq0LWEXxpgsb-NMO-": {
+      "departureDate": "2022-05-18T18:30:00.000Z",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    },
+    "-N2Gq2C8foruQ_mdA76r": {
+      "departureDate": "2022-05-18T18:30:00.000Z",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    },
+    "-N2Gt2GbhRRLBG3t1Wg8": {
+      "departureDate": "2022-05-18T18:30:00.000Z",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    },
+    "-N2Gt42NNvwydCeNHyX-": {
+      "departureDate": "2022-05-18T18:30:00.000Z",
+      "fareType": "Regular",
+      "fromLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "toLocation": {
+        "code": "DEL",
+        "country": "India",
+        "countryCode": "IN",
+        "description": "Indira Gandhi International Airport",
+        "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+        "id": "f1",
+        "name": "New Delhi"
+      },
+      "travellerClass": "Economy/Premium Economy",
+      "travellerCount": {
+        "adult": 1,
+        "children": 0,
+        "infant": 0,
+        "total": 1
+      },
+      "tripType": "ONEWAY"
+    }
+  },
+  "TravellerData": [
+    "Economy/Premium Economy",
+    "Premium Economy",
+    "Business"
+  ],
+  "locationData": [
+    {
+      "data": [
+        {
+          "code": "DEL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Indira Gandhi International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f1",
+          "name": "New Delhi"
+        },
+        {
+          "code": "DED",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Jolly Grant Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f2",
+          "name": "Dehradun"
+        },
+        {
+          "code": "DIB",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Mohanbari Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f3",
+          "name": "Dibrugarh"
+        },
+        {
+          "code": "DMU",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Dimapur Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f4",
+          "name": "Dimapur"
+        },
+        {
+          "code": "DBR",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Darbhanga Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f5",
+          "name": "Darbhanga"
+        },
+        {
+          "code": "CHE",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Chennai Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f6",
+          "name": "Chennai"
+        },
+        {
+          "code": "AMD",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Sardar Vallabhbhai Patel International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f7",
+          "name": "Ahmedabad"
+        },
+        {
+          "code": "ATQ",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Sri Guru Ram Dass Jee International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f8",
+          "name": "Amritsar"
+        },
+        {
+          "code": "AJL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Lengpui Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f9",
+          "name": "Aizawl"
+        },
+        {
+          "code": "AIP",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Adampur Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f10",
+          "name": "Adampur"
+        },
+        {
+          "code": "BOM",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Chhatrapati Shivaji International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f11",
+          "name": "Mumbai"
+        },
+        {
+          "code": "BEN",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Bangalore Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f12",
+          "name": "Bangalore"
+        },
+        {
+          "code": "KOL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Kolkatha International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f13",
+          "name": "Kolkatha"
+        }
+      ],
+      "id": "popular_data",
+      "itemName": "POPULAR CITY"
+    },
+    {
+      "data": [
+        {
+          "code": "DEL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Indira Gandhi International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f1",
+          "name": "New Delhi"
+        },
+        {
+          "code": "DED",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Jolly Grant Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f2",
+          "name": "Dehradun"
+        },
+        {
+          "code": "DIB",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Mohanbari Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f3",
+          "name": "Dibrugarh"
+        },
+        {
+          "code": "DMU",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Dimapur Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f4",
+          "name": "Dimapur"
+        },
+        {
+          "code": "DBR",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Darbhanga Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f5",
+          "name": "Darbhanga"
+        },
+        {
+          "code": "CHE",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Chennai Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f6",
+          "name": "Chennai"
+        },
+        {
+          "code": "AMD",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Sardar Vallabhbhai Patel International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f7",
+          "name": "Ahmedabad"
+        },
+        {
+          "code": "ATQ",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Sri Guru Ram Dass Jee International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f8",
+          "name": "Amritsar"
+        },
+        {
+          "code": "AJL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Lengpui Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f9",
+          "name": "Aizawl"
+        },
+        {
+          "code": "AIP",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Adampur Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f10",
+          "name": "Adampur"
+        },
+        {
+          "code": "BOM",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Chhatrapati Shivaji International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f11",
+          "name": "Mumbai"
+        },
+        {
+          "code": "BEN",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Bangalore Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f12",
+          "name": "Bangalore"
+        },
+        {
+          "code": "KOL",
+          "country": "India",
+          "countryCode": "IN",
+          "description": "Kolkatha International Airport",
+          "icon": "https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/ic-flight-onward.png",
+          "id": "f13",
+          "name": "Kolkatha"
+        }
+      ],
+      "id": "suggestion_data",
+      "itemName": "SUGGESTIONS"
+    }
+  ],
+  "tripLabel": [
+    "ONEWAY",
+    "ROUND TRIP",
+    "MULTI CITY"
+  ]
+}

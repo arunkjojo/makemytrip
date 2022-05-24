@@ -129,6 +129,7 @@ const LocationList = (props) => {
   useEffect(()=>{
     if(selected !== null)
       console.log("selected",selected);
+      
       // props.locationFixed({
       //   ...selected
       // })
@@ -169,18 +170,6 @@ const LocationList = (props) => {
                       onClick={() => setSelected(data)}
                       onMouseEnter={() => onMouseEnterHandler(data,'suggest')}
                       onMouseLeave={() => setHovered(undefined)}
-                      // onClick={(e) => {
-                      //   e.stopPropagation();
-                      //   props.locationFixed({
-                      //     id: data.id,
-                      //     name: data.name,
-                      //     country: data.country,
-                      //     description: data.description,
-                      //     code: data.code,
-                      //     countryCode: data.countryCode,
-                      //     icon: data.icon,
-                      //   });
-                      // }}
                     >
                       <LocationNameLabel>
                         <LocationName>
@@ -212,18 +201,6 @@ const LocationList = (props) => {
                     onClick={() => setSelected(data)}
                     onMouseEnter={() => onMouseEnterHandler(data,'recent')}
                     onMouseLeave={() => setHovered(undefined)}
-                    // onClick={(e) => {
-                    //   e.stopPropagation();
-                    //   props.locationFixed({
-                    //     id: data.id,
-                    //     name: data.name,
-                    //     country: data.country,
-                    //     description: data.description,
-                    //     code: data.code,
-                    //     countryCode: data.countryCode,
-                    //     icon: data.icon,
-                    //   });
-                    // }}
                   >
                     <LocationNameLabel>
                       <LocationName>
@@ -252,6 +229,7 @@ const LocationList = (props) => {
                     onClick={() => setSelected(data)}
                     onMouseEnter={() => onMouseEnterHandler(data,'popular')}
                     onMouseLeave={() => setHovered(undefined)}
+
                     // onClick={(e) => {
                     //   e.stopPropagation();
                     //   props.locationFixed({

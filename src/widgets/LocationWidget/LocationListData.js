@@ -1,179 +1,174 @@
-import React from "react";
+import React, { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import Autosuggest from "react-autosuggest/dist/Autosuggest";
-const languages = [
-  {
-    title: "1970s",
-    languages: [
-      {
-        name: "C",
-        year: 1972,
-      },
-    ],
-  },
-  {
-    title: "1980s",
-    languages: [
-      {
-        name: "C++",
-        year: 1983,
-      },
-      {
-        name: "Perl",
-        year: 1987,
-      },
-    ],
-  },
-  {
-    title: "1990s",
-    languages: [
-      {
-        name: "Haskell",
-        year: 1990,
-      },
-      {
-        name: "Python",
-        year: 1991,
-      },
-      {
-        name: "Java",
-        year: 1995,
-      },
-      {
-        name: "Javascript",
-        year: 1995,
-      },
-      {
-        name: "PHP",
-        year: 1995,
-      },
-      {
-        name: "Ruby",
-        year: 1995,
-      },
-    ],
-  },
-  {
-    title: "2000s",
-    languages: [
-      {
-        name: "C#",
-        year: 2000,
-      },
-      {
-        name: "Scala",
-        year: 2003,
-      },
-      {
-        name: "Clojure",
-        year: 2007,
-      },
-      {
-        name: "Go",
-        year: 2009,
-      },
-    ],
-  },
-  {
-    title: "2010s",
-    languages: [
-      {
-        name: "Elm",
-        year: 2012,
-      },
-    ],
-  },
-];
+import {
+  LocationData,
+  LocationNameLabel,
+  LocationName,
+  LocationLabel,
+  LocationSName,
+  Label,
+} from "../../customStyle";
+import { useSelector } from "react-redux";
+import debounce from "lodash.debounce";
+import { getApiSuggestions } from "../../API/";
 
-function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
+const LocationSuggrctionList = (props) => {
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const locationData = useSelector((state) => state.location);
+  const [location, setLocation]=useState({})
 
-function getSuggestions(value) {
-  const escapedValue = escapeRegexCharacters(value.trim());
+  // useEffect(()=>{
+  //   console.log("location", location);
+  // },[location]);
 
-  if (escapedValue === "") {
-    return [];
-  }
+  useEffect(() => {
+    var locations = [...suggestions];
+    if (props.keyValue === "from"){
+      let recent = {
+        title: "RECENT",
+        data: locationData.recent.from
+      }
+      locations.push(recent);
+    } else if(props.keyValue === "to"){
+      let recent = {
+        title: "RECENT",
+        data: locationData.recent.to
+      }
+      
+      locations.push(recent);
+    }
+    if(locationData.popular !== []){
+      let popular = {
+        title: "POPULAR",
+        data: locationData.popular
+      }
+      locations.push(popular);
+    }
+    setSuggestions(locations);
+  }, []);
 
-  const regex = new RegExp("^" + escapedValue, "i");
+  const debouncedSave = useCallback(
+    debounce((newValue) => getApiSuggestions(newValue), 1000),
+    []
+  );
 
-  return languages
-    .map((section) => {
-      return {
-        title: section.title,
-        languages: section.languages.filter((language) =>
-          regex.test(language.name)
-        ),
-      };
-    })
-    .filter((section) => section.languages.length > 0);
-}
-
-function getSuggestionValue(suggestion) {
-  return suggestion.name;
-}
-
-function renderSuggestion(suggestion) {
-  return <span>{suggestion.name}</span>;
-}
-
-function renderSectionTitle(section) {
-  return <strong>{section.title}</strong>;
-}
-
-function getSectionSuggestions(section) {
-  return section.languages;
-}
-
-class LocationListData extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      value: "",
-      suggestions: [],
-    };
-  }
-
-  onChange = (event, { newValue, method }) => {
-    this.setState({
-      value: newValue,
-    });
+  const updateValue = (value) => {
+    setValue(value);
+    debouncedSave(value);
+    getSuggestions(value)
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value),
-    });
+  const escapeRegexCharacters = (str) => {
+    // console.log("escapeRegexCharacters", str);
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
+  const getSuggestions = (value) => {
+    // console.log("getSuggestions", value);
+    const escapedValue = escapeRegexCharacters(value.trim());
+    if (escapedValue === "") {
+      // console.log(suggestions)
+      return suggestions;
+    } else {
+      let suggectionData = [{
+        title: 'SUGGECTIONS',
+        data: locationData.suggestions.filter((data) => (
+          data.name.toLowerCase().includes(escapedValue)
+        ))
+      }];
+      // console.log("suggectionData",suggectionData);
+      return suggectionData;
+    }
   };
 
-  render() {
-    const { value, suggestions } = this.state;
-    const inputProps = {
-      placeholder: "Type 'c'",
-      value,
-      onChange: this.onChange,
-    };
+  const getSuggestionValue = (suggestion) => {
+    // console.log("getSuggestionValue", suggestion);
+    setLocation(suggestion);
+    // props.locationFixed(suggestion);
+    return suggestion.name;
+  };
 
+  const renderSuggestion = (suggestion) => {
+    // console.log("renderSuggestion", suggestion);
     return (
-      <Autosuggest
-        multiSection={true}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        renderSectionTitle={renderSectionTitle}
-        getSectionSuggestions={getSectionSuggestions}
-        inputProps={inputProps}
-      />
+      <LocationData key={suggestion.id}>
+        <LocationNameLabel>
+          <LocationName>
+            {suggestion.name},{suggestion.country}{" "}
+          </LocationName>
+          <LocationLabel>{suggestion.description} </LocationLabel>
+        </LocationNameLabel>
+        <LocationSName>{suggestion.code} </LocationSName>
+      </LocationData>
     );
+  };
+
+  const renderSectionTitle = (section) => {
+    // console.log("renderSectionTitle", section);
+    return <Label>{section.title}</Label>;
+  };
+
+  const getSectionSuggestions = (section) => {
+    // console.log("getSectionSuggestions", section.data);
+    return section.data;
+  };
+
+  const onChange = (event, { newValue, method }) => {
+    // setValue(newValue);
+    console.log("onChange ","method ",method)
+    updateValue(newValue);
+    if(method === 'enter'){
+      props.locationFixed(location)
+    }
+    if(method === 'click'){
+      props.locationFixed(location)
+    }
+  };
+  const onBlur = (event, { highlightedSuggestion }) => {
+    console.log("onBlur ","highlightedSuggestion",highlightedSuggestion)
+    props.locationFixed(highlightedSuggestion)
   }
-}
-export default LocationListData;
+
+  const onSuggestionSelected = (event, { suggestion, method }) => {
+    console.log("onSuggestionSelected ","suggestion",suggestion,"method",method);
+    props.locationFixed(suggestion)
+  }
+
+  const onSuggestionsFetchRequested = ({value}) => {
+    let getSugData = getSuggestions(value);
+    // console.log("getSugData",getSugData);
+    setSuggestions(getSugData);
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const inputProps = {
+    placeholder: props.keyValue.toUpperCase(),
+    value,
+    onChange,
+    onBlur,
+    tabIndex:-1,
+    autoFocus:true
+  };
+
+  return (
+    <Autosuggest
+      focusInputOnSuggestionClick={true}
+      alwaysRenderSuggestions={true}
+      multiSection={true}
+      suggestions={suggestions}
+      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+      onSuggestionsClearRequested={onSuggestionsClearRequested}
+      getSuggestionValue={getSuggestionValue}
+      renderSuggestion={renderSuggestion}
+      renderSectionTitle={renderSectionTitle}
+      getSectionSuggestions={getSectionSuggestions}
+      inputProps={inputProps}
+      onSuggestionSelected = {onSuggestionSelected}
+    />
+  );
+};
+export default LocationSuggrctionList;

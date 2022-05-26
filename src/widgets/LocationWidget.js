@@ -22,12 +22,11 @@ const LocationWidget = (props) => {
     ref,
     isComponentVisible,
     setIsComponentVisible
-  } = useComponentVisible(false);
+  } = useComponentVisible(props.expand);
   // const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
-    // setVisible(false);
     if (props.primaryKey === "from") {
       let from = {
         id: data.id,
@@ -39,7 +38,6 @@ const LocationWidget = (props) => {
         icon: data.icon,
       };
       dispatch(changeFromLocation(from));
-
     } else if (props.primaryKey === "to") {
       let to = {
         id: data.id,
@@ -70,7 +68,6 @@ const LocationWidget = (props) => {
         return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
       }));
     }
-
     props.onLocationChange(data);
   };
 

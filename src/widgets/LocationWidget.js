@@ -1,5 +1,4 @@
 import React, { useEffect, } from "react";
-import LocationList from "./LocationWidget/LocationList";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFromLocation, changeToLocation } from "../redux/locationSlice";
 import {
@@ -14,6 +13,8 @@ import {
 } from "../customStyle";
 import useComponentVisible from "../helper/useComponentVisible";
 import { changeLocations } from "../redux/flightSlice";
+// import LocationList from "./LocationWidget/LocationList";
+import LocationListData from "./LocationWidget/LocationListData";
 
 const LocationWidget = (props) => {
   const locations = useSelector(state => state.location);
@@ -21,12 +22,11 @@ const LocationWidget = (props) => {
     ref,
     isComponentVisible,
     setIsComponentVisible
-  } = useComponentVisible(false);
+  } = useComponentVisible(props.expand);
   // const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
-    // setVisible(false);
     if (props.primaryKey === "from") {
       let from = {
         id: data.id,
@@ -38,7 +38,6 @@ const LocationWidget = (props) => {
         icon: data.icon,
       };
       dispatch(changeFromLocation(from));
-
     } else if (props.primaryKey === "to") {
       let to = {
         id: data.id,
@@ -69,7 +68,6 @@ const LocationWidget = (props) => {
         return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
       }));
     }
-
     props.onLocationChange(data);
   };
 
@@ -113,7 +111,11 @@ const LocationWidget = (props) => {
       {/* {visible && isComponentVisible && ( */}
       {props.expand && isComponentVisible && (
         <LocationDropDiv>
-          <LocationList
+          {/* <LocationList
+            keyValue={props.primaryKey}
+            locationFixed={locationFixHandler}
+          /> */}
+          <LocationListData 
             keyValue={props.primaryKey}
             locationFixed={locationFixHandler}
           />

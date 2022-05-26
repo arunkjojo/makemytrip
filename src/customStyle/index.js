@@ -420,7 +420,16 @@ export const LocationDescription = styledComponents.p`
   width: 100%;
 `;
 
-export const LocationDropDiv = styledComponents.div``;
+export const LocationDropDiv = styledComponents.div`
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 6px 0 rgb(0 0 0 / 20%);
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  z-index: 999999;
+  top: -60px;
+`;
 
 // // FareWidget //
 

@@ -29,11 +29,11 @@ const LocationWidget = (props) => {
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
     
-    console.log(">>>data", data)
+    // console.log(">>>data", data)
     if(data!==null){
-      console.log(">>>data notnull", data)
+      // console.log(">>>data notnull", data)
       if ( props.primaryKey === "from") {
-        console.log(">>>data from", data)
+        // console.log(">>>data from", data)
         let from = {
           id: data.id,
           name: data.name,
@@ -45,7 +45,7 @@ const LocationWidget = (props) => {
         };
         dispatch(changeFromLocation(from));
       } else if (props.primaryKey === "to") {
-        console.log(">>>data to", data)
+        // console.log(">>>data to", data)
         let to = {
           id: data.id,
           name: data.name,
@@ -86,7 +86,7 @@ const LocationWidget = (props) => {
   
   function showChildComp(event) {
     event.preventDefault();
-    console.log(">>>showChildComp location",event);
+    // console.log(">>>showChildComp location",event);
     props.onClick();
     // setIsComponentVisible(true);
   }
@@ -129,7 +129,7 @@ const LocationWidget = (props) => {
           <LocationListData 
             keyValue={props.primaryKey}
             locationFixed={(data)=>{
-              console.log(">>>***data p", data);
+              // console.log(">>>***data p", data);
               locationFixHandler(data);
             }}
           />

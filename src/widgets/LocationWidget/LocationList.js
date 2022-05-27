@@ -69,19 +69,19 @@ const LocationList = (props) => {
     if (enterPress) {
       switch (locationType) {
         case 'suggest':
-          console.log("suggestion",suggestionFilterdData.current.indexOf(hovered))
+          // console.log("suggestion",suggestionFilterdData.current.indexOf(hovered))
           setCursor(suggestionFilterdData.current.indexOf(hovered));
         break;
         case 'recent':
-          console.log("recent",currentRecentLocation.indexOf(hovered))
+          // console.log("recent",currentRecentLocation.indexOf(hovered))
           setCursor(currentRecentLocation.indexOf(hovered));
         break;
         case 'popular':
-          console.log("popular",locationData.popular.indexOf(hovered))
+          // console.log("popular",locationData.popular.indexOf(hovered))
           setCursor(locationData.popular.indexOf(hovered));
         break;
         default:
-          console.log("not in all")
+          // console.log("not in all")
           setCursor(null);
         break;
       }
@@ -92,19 +92,19 @@ const LocationList = (props) => {
     if (hovered) {
       switch (locationType) {
         case 'suggest':
-          console.log("suggestion",suggestionFilterdData.current.indexOf(hovered))
+          // console.log("suggestion",suggestionFilterdData.current.indexOf(hovered))
           setCursor(suggestionFilterdData.current.indexOf(hovered));
         break;
         case 'recent':
-          console.log("recent",currentRecentLocation.indexOf(hovered))
+          // console.log("recent",currentRecentLocation.indexOf(hovered))
           setCursor(currentRecentLocation.indexOf(hovered));
         break;
         case 'popular':
-          console.log("popular",locationData.popular.indexOf(hovered))
+          // console.log("popular",locationData.popular.indexOf(hovered))
           setCursor(locationData.popular.indexOf(hovered));
         break;
         default:
-          console.log("not in all")
+          // console.log("not in all")
           setCursor(null);
         break;
       }
@@ -117,31 +117,12 @@ const LocationList = (props) => {
     setLocationType(types)
   }
 
-  function onKeyPrssHandler(event){
-    // console.log("event",event.code);
-    if(event.code === 'ArrowDown'){
-      console.log("ArrowDown cursor",cursor)
-    }if(event.code === 'ArrowUp'){
-      console.log("ArrowDown cursor",cursor)
-    }
-  }
-
-  useEffect(()=>{
-    if(selected !== null)
-      console.log("selected",selected);
-      
-      // props.locationFixed({
-      //   ...selected
-      // })
-  },[selected, props])
-
   return (
     <LocationDiv
     >
       <SearchInput
         tabIndex={-1}
         value={searchValue}
-        onKeyDown={onKeyPrssHandler}
         onChange={(event) => {
           event.preventDefault();
           updateValue(event.target.value);

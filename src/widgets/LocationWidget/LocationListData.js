@@ -119,7 +119,7 @@ const LocationSuggrctionList = (props) => {
     // event.defaultPrevent();
     updateValue(newValue);
     if(method === 'enter'){
-      console.log(">>>enter", location)
+      // console.log(">>>enter", location)
       props.locationFixed(location)
     }
     // else if(method === 'click'){
@@ -134,7 +134,7 @@ const LocationSuggrctionList = (props) => {
   // }
 
   const onSuggestionSelected = (event, { suggestion, method }) => {
-    console.log(">>>onSuggestionSelected ",suggestion);
+    // console.log(">>>onSuggestionSelected ",suggestion);
     props.locationFixed(suggestion)
   }
 

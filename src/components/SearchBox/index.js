@@ -92,7 +92,7 @@ const SearchBox = () => {
       traveller:false
     });
 
-    console.log("fromLocationHandler")
+    console.log(">>>fromLocationHandler")
   }
 
   function toLocationHandler() {
@@ -104,7 +104,7 @@ const SearchBox = () => {
       traveller:false
     });
     
-    console.log("toLocationHandler")
+    console.log(">>>toLocationHandler")
   }
 
   function travellerHandler() {
@@ -120,6 +120,7 @@ const SearchBox = () => {
   }
 
   function locationChangeHandler(type, location){
+    console.log(">>>type",type, location);
     if(type ==='from'){
       setVisibility({
         date:false,
@@ -127,7 +128,7 @@ const SearchBox = () => {
         to:true,
         traveller:false
       });
-      console.log("locationChangeHandler from");
+      console.log(">>>locationChangeHandler from");
     }else if(type ==='to'){
       setVisibility({
         date:true,
@@ -135,7 +136,7 @@ const SearchBox = () => {
         to:false,
         traveller:false
       });
-      console.log("locationChangeHandler to");
+      console.log(">>>locationChangeHandler to");
     }
   }
 
@@ -202,7 +203,7 @@ const SearchBox = () => {
           code={locationValue.from.code}
           expand={visibility.from}
           onClick={fromLocationHandler} 
-          onLocationChange={(data)=>locationChangeHandler('from', data)}
+          onLocationChange={data => locationChangeHandler('from', data)}
         />
         <SpinCircle onClick={(e)=>{
           e.preventDefault();
@@ -221,7 +222,7 @@ const SearchBox = () => {
           code={locationValue.to.code}
           expand={visibility.to}
           onClick={toLocationHandler}
-          onLocationChange={(data)=>locationChangeHandler('to', data)}
+          onLocationChange={data => locationChangeHandler('to', data)}
         />
         <DateWidget
           primaryKey="from"

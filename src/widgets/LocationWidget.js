@@ -10,9 +10,10 @@ import {
   ErrorSection,
   ErrorIcon,
   ErrorMessage,
+  Input,
 } from "../customStyle";
 import useComponentVisible from "../helper/useComponentVisible";
-import { changeLocations } from "../redux/flightSlice";
+// import { changeLocations } from "../redux/flightSlice";
 // import LocationList from "./LocationWidget/LocationList";
 import LocationListData from "./LocationWidget/LocationListData";
 
@@ -22,79 +23,88 @@ const LocationWidget = (props) => {
     ref,
     isComponentVisible,
     setIsComponentVisible
-  } = useComponentVisible(props.expand);
+  } = useComponentVisible(false);
   // const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
   const locationFixHandler = (data) => {
-    if (props.primaryKey === "from") {
-      let from = {
-        id: data.id,
-        name: data.name,
-        country: data.country,
-        description: data.description,
-        code: data.code,
-        countryCode: data.countryCode,
-        icon: data.icon,
-      };
-      dispatch(changeFromLocation(from));
-    } else if (props.primaryKey === "to") {
-      let to = {
-        id: data.id,
-        name: data.name,
-        country: data.country,
-        description: data.description,
-        code: data.code,
-        countryCode: data.countryCode,
-        icon: data.icon,
-      };
-      dispatch(changeToLocation(to));
-    } else{
-      let intermediate = {
-        id: data.id,
-        name: data.name,
-        country: data.country,
-        description: data.description,
-        code: data.code,
-        countryCode: data.countryCode,
-        icon: data.icon,
-      };
+    
+    console.log(">>>data", data)
+    if(data!==null){
+      console.log(">>>data notnull", data)
+      if ( props.primaryKey === "from") {
+        console.log(">>>data from", data)
+        let from = {
+          id: data.id,
+          name: data.name,
+          country: data.country,
+          description: data.description,
+          code: data.code,
+          countryCode: data.countryCode,
+          icon: data.icon,
+        };
+        dispatch(changeFromLocation(from));
+      } else if (props.primaryKey === "to") {
+        console.log(">>>data to", data)
+        let to = {
+          id: data.id,
+          name: data.name,
+          country: data.country,
+          description: data.description,
+          code: data.code,
+          countryCode: data.countryCode,
+          icon: data.icon,
+        };
+        dispatch(changeToLocation(to));
+      } 
+      // else{
+      //   let intermediate = {
+      //     id: data.id,
+      //     name: data.name,
+      //     country: data.country,
+      //     description: data.description,
+      //     code: data.code,
+      //     countryCode: data.countryCode,
+      //     icon: data.icon,
+      //   };
 
-      dispatch(changeLocations({
-        primaryIndex: props.countNumber,
-        from: intermediate,
-        to: intermediate,
-        departure: new Date().toDateString(),
-        return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
-      }));
+      //   dispatch(changeLocations({
+      //     primaryIndex: props.countNumber,
+      //     from: intermediate,
+      //     to: intermediate,
+      //     departure: new Date().toDateString(),
+      //     return: new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toDateString(),
+      //   }));
+      // }
+      props.onLocationChange(data);
     }
-    props.onLocationChange(data);
   };
 
   useEffect(()=>{
     setIsComponentVisible(props.expand);
-  },[props, setIsComponentVisible]);
+  },[props.expand, setIsComponentVisible]);
   
-  function showChildComp() {
-    // console.log("showChildComp location");
+  function showChildComp(event) {
+    event.preventDefault();
+    console.log(">>>showChildComp location",event);
     props.onClick();
+    // setIsComponentVisible(true);
   }
   return (
     <WidgetDiv 
       widthValue={props.widthValue}
       ref={ref} 
-      onFocus={showChildComp} 
-      tabIndex={0}
+      // onFocus={showChildComp} 
       style={props.label === 'To'?{marginLeft: "-18px"}:null}
     >
       <WidgetLabel 
         htmlFor={props.label}
       >
         <WidgetSpan active={isComponentVisible}>{props.label}</WidgetSpan>
-        
-        <WidgetValue style={{ fontWeight: 900 }} >
+        <Input tabIndex={0} onFocus={showChildComp} className="headTilte" value={props.name} readOnly/>
+        {/* <WidgetValue style={{ fontWeight: 900 }} >
           <span className="headTilte">{props.name}</span>
-        </WidgetValue>
+        </WidgetValue> */}
         <WidgetValue>
           <span className="para">{props.code}{props.code!==''?',':null} {props.description}</span>
         </WidgetValue>
@@ -109,6 +119,7 @@ const LocationWidget = (props) => {
         )}
       </WidgetLabel>
       {/* {visible && isComponentVisible && ( */}
+      {/* props.expand &&  */}
       {props.expand && isComponentVisible && (
         <LocationDropDiv>
           {/* <LocationList
@@ -117,7 +128,10 @@ const LocationWidget = (props) => {
           /> */}
           <LocationListData 
             keyValue={props.primaryKey}
-            locationFixed={locationFixHandler}
+            locationFixed={(data)=>{
+              console.log(">>>***data p", data);
+              locationFixHandler(data);
+            }}
           />
         </LocationDropDiv>
       )}

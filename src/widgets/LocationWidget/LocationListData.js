@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef, useMemo } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Autosuggest from "react-autosuggest/dist/Autosuggest";
 import {
   LocationData,
@@ -74,7 +74,7 @@ const LocationSuggrctionList = (props) => {
       let suggectionData = [{
         title: 'SUGGECTIONS',
         data: locationData.suggestions.filter((data) => (
-          data.name.toLowerCase().includes(escapedValue)
+          data.name.toLowerCase().includes(value)
         ))
       }];
       // console.log("suggectionData",suggectionData);
@@ -116,22 +116,25 @@ const LocationSuggrctionList = (props) => {
 
   const onChange = (event, { newValue, method }) => {
     // setValue(newValue);
-    console.log("onChange ","method ",method)
+    // event.defaultPrevent();
     updateValue(newValue);
     if(method === 'enter'){
+      console.log(">>>enter", location)
       props.locationFixed(location)
     }
-    if(method === 'click'){
-      props.locationFixed(location)
-    }
+    // else if(method === 'click'){
+    //   props.locationFixed(location)
+    // }
   };
-  const onBlur = (event, { highlightedSuggestion }) => {
-    console.log("onBlur ","highlightedSuggestion",highlightedSuggestion)
-    props.locationFixed(highlightedSuggestion)
-  }
+  
+  // const onBlur = (event, { highlightedSuggestion }) => {
+  //   alert("onBlur");
+  //   console.log(">>>highlightedSuggestion",highlightedSuggestion)
+  //   props.locationFixed(highlightedSuggestion)
+  // }
 
   const onSuggestionSelected = (event, { suggestion, method }) => {
-    console.log("onSuggestionSelected ","suggestion",suggestion,"method",method);
+    console.log(">>>onSuggestionSelected ",suggestion);
     props.locationFixed(suggestion)
   }
 
@@ -149,8 +152,7 @@ const LocationSuggrctionList = (props) => {
     placeholder: props.keyValue.toUpperCase(),
     value,
     onChange,
-    onBlur,
-    tabIndex:-1,
+    tabIndex:'-1',
     autoFocus:true
   };
 

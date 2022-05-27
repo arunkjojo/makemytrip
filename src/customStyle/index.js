@@ -341,14 +341,6 @@ export const WidgetValue = styledComponents.p`
 
   color: #000;
   font-family: Lato;
-  .input{
-    border: 0;
-    outline: 0;
-    background: none;
-    cursor: pointer;
-    padding: 0px;
-    margin: 0px;
-  }
 
   .headTilte {
     font-weight: 900;
@@ -365,12 +357,9 @@ export const WidgetValue = styledComponents.p`
 `;
 
 export const Input = styledComponents.input.attrs({
+  readOnly:true,
 
 })`
-  opacity: 0 !important;
-  position: absolute;
-  z-index: -1;
-
   border: 0;
   outline: 0;
   background: none;
@@ -379,6 +368,9 @@ export const Input = styledComponents.input.attrs({
   cursor: pointer;
   padding: 0px;
   margin: 0px;
+  font-weight: 900;
+  line-height: 36px;
+  font-size: 30px;
 `
 
 // // TravellerWidget //

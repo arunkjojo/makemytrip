@@ -7,6 +7,7 @@ import { AppDiv, NavIcon, ErrorPage } from "./customStyle";
 import { Icons } from "./DB";
 import { useDispatch,useSelector } from "react-redux";
 import { updateSuggestion, updatePopularCity } from "./redux/serviceLocation";
+import { Offline, Online } from 'react-detect-offline';
 
 var online_error=null;
 function App() {
@@ -29,13 +30,22 @@ function App() {
   }, []);
 
   return (
-    online_error!==null 
-    ? <ErrorPage>
-      <h2>{online_error}</h2>
+    // online_error!==null 
+    // ? <ErrorPage>
+    //   <h2>{online_error}</h2>
+    //   {/* <img src="https://freefrontend.com/assets/img/css-loaders/loading.gif" alt="Loading" /> */}
+    // </ErrorPage>
+    <>
+    <Offline>
+      <h2 className="no-internet"> Sorry Please Turn On your Internet Connection </h2>
       {/* <img src="https://freefrontend.com/assets/img/css-loaders/loading.gif" alt="Loading" /> */}
-    </ErrorPage>
-    : (
-      <>
+      </Offline>
+    <Online>
+    {online_error!==null 
+    ? <ErrorPage>
+        <h2>{online_error}</h2>
+      </ErrorPage>
+    : <>
         <AppDiv>
           <BrowserRouter>
             <NavIcon>
@@ -46,7 +56,9 @@ function App() {
         </AppDiv>
         <ResultData />
       </>
-    )
+    }
+    </Online>
+    </>
   );
 }
 

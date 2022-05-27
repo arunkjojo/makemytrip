@@ -47,22 +47,22 @@ export const postApiSearch = (data) => {
   // console.log("travellerCount",travellerCount);
 
   if(database !== {}){
-    url.post('/SearchTrip.json', {
-      tripType:tripType,
-      fareType:fareType,
-      departureDate:departureDate,
-      returnDate:returnDate,
-      fromLocation,
-      toLocation,
-      travellerClass,
-      travellerCount
-    }).then(res => {
-      if(res.status === 200) {
+    // url.post('/SearchTrip.json', {
+    //   tripType:tripType,
+    //   fareType:fareType,
+    //   departureDate:departureDate,
+    //   returnDate:returnDate,
+    //   fromLocation,
+    //   toLocation,
+    //   travellerClass,
+    //   travellerCount
+    // }).then(res => {
+    //   if(res.status === 200) {
         alert("successful Submition")
-      }
-    }).catch(err =>{
-      alert("Somthing Went Wrong")
-    })
+    //   }
+    // }).catch(err =>{
+    //   alert("Somthing Went Wrong")
+    // })
   }
 };
 

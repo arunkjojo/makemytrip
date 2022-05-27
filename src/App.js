@@ -17,9 +17,7 @@ function App() {
     console.log(location.popular.length)
     online_error = 'Loading...'
   }else{
-    setTimeout(() => {
-      online_error = null
-    }, 1500);
+    online_error = null
   }
 
   useEffect(() => {
@@ -34,7 +32,7 @@ function App() {
     online_error!==null 
     ? <ErrorPage>
       <h2>{online_error}</h2>
-      <img src="https://freefrontend.com/assets/img/css-loaders/loading.gif" alt="Loading" />
+      {/* <img src="https://freefrontend.com/assets/img/css-loaders/loading.gif" alt="Loading" /> */}
     </ErrorPage>
     : (
       <>
